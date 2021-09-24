@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "289671747698",
+    "project_id": "tritek-78a3f",
+    "storage_bucket": "tritek-78a3f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:289671747698:android:7c9a03d9297fd644284aeb",
+        "android_client_info": {
+          "package_name": "com.rainestech.tritek_lms"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "289671747698-dl3grfd78acbo505fu4931ltp2k5oqtg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCii0akg1KbnLmuzDySWK9__qeOEsjBXj4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "289671747698-dl3grfd78acbo505fu4931ltp2k5oqtg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
