@@ -82,7 +82,7 @@ class _SplashScreenState extends State<SplashScreen> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 SizedBox(height: 50),
-                Image.asset("tritek-logo.png",
+                Image.asset("logo.png",
                     height: 100, fit: BoxFit.fitHeight),
                 SizedBox(height: 50),
               ]),

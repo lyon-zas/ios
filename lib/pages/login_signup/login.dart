@@ -673,7 +673,7 @@ class _LoginState extends State<Login> {
                               children: [
                                 Image.asset(
                                   'assets/google.png',
-                                  height: 30.0,
+                                  height: 28.0,
                                   fit: BoxFit.fitHeight,
                                 ),
                                 SizedBox(

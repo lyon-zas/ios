@@ -43,7 +43,7 @@ class _WelcomeSreenState extends State<WelcomeSreen> {
                   ),
                 ])),
                 SizedBox(height: 60),
-                Image.asset("assets/tritek-logo.png",
+                Image.asset("assets/logo.png",
                     height: 90, fit: BoxFit.fitHeight),
                 SizedBox(height: 50),
                 Padding(

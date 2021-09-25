@@ -36,13 +36,13 @@ class _HomeMainState extends State<HomeMain> {
       });
     });
     
-    userBloc.image.listen((value) {
+    userBloc.userSubject.listen((value) {
       if (!mounted) {
         return;
       }
 
       setState(() {
-        _image = value;
+        _user = value?.results;
       });
     });
     userBloc.getUser();

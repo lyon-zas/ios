@@ -271,8 +271,7 @@ class _WishlistState extends State<Wishlist> {
                         duration: Duration(milliseconds: 300),
                         opacity: 1.0,
                         child: Container(
-                          padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                          alignment: Alignment.bottomCenter,
+                         
                           decoration: BoxDecoration(
                             color: themeBlue,
                           ),
@@ -280,7 +279,7 @@ class _WishlistState extends State<Wishlist> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: <Widget>[
                               Text(
-                                'FAVOURITES',
+                                'Favourite',
                                 style: TextStyle(
                                   fontFamily: 'Signika Negative',
                                   fontWeight: FontWeight.w700,

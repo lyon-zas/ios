@@ -553,7 +553,7 @@ class _SignUpState extends State<SignUp> {
                             children: [
                               Image.asset(
                                 'assets/google.png',
-                                height: 30.0,
+                                height: 28.0,
                                 fit: BoxFit.fitHeight,
                               ),
                               SizedBox(

@@ -40,14 +40,14 @@ android {
         disable 'InvalidPackage'
     }
 
-    // signingConfigs {
-    //     debug {
-    //         storeFile file('C:/Users/HP LAPTOP/Desktop/Tritek/release_key.jks')
-    //         storePassword 'raines1303@#$'
-    //         keyAlias 'androidreleasekey'
-    //         keyPassword 'raines1303@#$'
-    //     }
-    // }
+    signingConfigs {
+        debug {
+            storeFile file('C:/Users/HP LAPTOP/Desktop/Tritek/release_key.jks')
+            storePassword 'raines1303@#$'
+            keyAlias 'androidreleasekey'
+            keyPassword 'raines1303@#$'       
+        }
+    }
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).

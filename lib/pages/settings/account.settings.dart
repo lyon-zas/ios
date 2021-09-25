@@ -498,6 +498,7 @@ class _AccountSettingsState extends State<AccountSettings> {
                       if (_user != null)
                   Column(
                     mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                        SizedBox(width: 10.0),
                         SizedBox(height: 60.0),

@@ -69,7 +69,7 @@ class _HomeState extends State<Home> {
               color: Colors.white,
             ),
             activeIcon: Icon(
-              Icons.speed_rounded,
+              Icons.dashboard_outlined,
               color: themeGold,
             ),
             title: Text(
