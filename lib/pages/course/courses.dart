@@ -256,7 +256,7 @@ class _CoursesNewState extends State<CoursesNew> {
                   height: 8,
                 ),
                 if (_user == null || (_user != null && _user.status != 'active'))
-                  Spacer(),
+                 
                 if (_user == null)
                   InkWell(
                     onTap: () {

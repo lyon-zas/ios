@@ -14,7 +14,11 @@ import 'package:tritek_lms/pages/search.dart';
 import 'package:tritek_lms/pages/settings/account.settings.dart';
 import 'package:tritek_lms/pages/settings/app_settings.dart';
 import 'package:tritek_lms/pages/settings/help.dart';
+import 'package:tritek_lms/pages/settings/inapp.webview.dart';
+import 'package:tritek_lms/pages/settings/privacy_policy.dart';
 import 'package:tritek_lms/pages/settings/saved_video.dart';
+import 'package:tritek_lms/pages/settings/terms_condition.dart';
+import 'package:tritek_lms/pages/settings/testoooo.dart';
 import 'package:tritek_lms/pages/settings/traning_videos.dart';
 import 'package:tritek_lms/pages/welcome.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -65,16 +69,32 @@ class _MoreState extends State<More> {
     return Scaffold(
         appBar: AppBar(
           elevation: 0.0,
-         automaticallyImplyLeading: false, 
-         backgroundColor: themeBlue,
-          title: Text(
-            "More",
-            style: TextStyle(
-              fontFamily: 'Signika Negative',
-              fontWeight: FontWeight.w700,
-              fontSize: 30.0,
-              color: themeGold,
-            ),
+          automaticallyImplyLeading: false,
+          backgroundColor: themeBlue,
+          title: Row(
+            children: [
+              Container(
+                height: 26.0,
+                width: 26.0,
+                margin: EdgeInsets.all(10.0),
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage("assets/logo.png"),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+              SizedBox(height: 5),
+              Text(
+                "More",
+                style: TextStyle(
+                  fontFamily: 'Signika Negative',
+                  fontWeight: FontWeight.w700,
+                  fontSize: 30.0,
+                  color: themeGold,
+                ),
+              ),
+            ],
           ),
           actions: <Widget>[
             IconButton(
@@ -98,10 +118,10 @@ class _MoreState extends State<More> {
           ],
         ),
         body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal:12),
+          padding: const EdgeInsets.symmetric(horizontal: 12),
           child: ListView(
             children: [
-              SizedBox(height: 60.0),
+              SizedBox(height: 40.0),
               Container(
                   margin: EdgeInsets.only(right: 15.0, left: 15.0),
                   child: Column(
@@ -115,14 +135,13 @@ class _MoreState extends State<More> {
                                     builder: (context) => AccountSettings()));
                           },
                           child: Row(
-                            
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
                               Icon(
                                 Icons.account_circle,
                                 size: 20.0,
                               ),
-                              SizedBox(width:15),
+                              SizedBox(width: 15),
                               Text(
                                 'Account',
                                 style: TextStyle(
@@ -139,49 +158,23 @@ class _MoreState extends State<More> {
                         SizedBox(height: 10.0),
                         InkWell(
                           onTap: () {
+                            // _launchURL('https://mytritek.co.uk/about-us');
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => TrainingVideos()));
+                                    builder: (context) =>
+                                        testoo())); //WebviewInApp('https://mytritek.co.uk/about-us')
                           },
                           child: Row(
-                            
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
                               Icon(
-                                Icons.menu_book_sharp,
+                                Icons.info,
                                 size: 20.0,
                               ),
-                              SizedBox(width:15),
+                              SizedBox(width: 15),
                               Text(
-                                'Training Materials',
-                                style: TextStyle(
-                                    fontSize: 19.0,
-                                    color: themeBlue,
-                                    fontWeight: FontWeight.w700,
-                                    fontFamily: 'Signika Negative'),
-                              ),
-                            ],
-                          ),
-                        ),
-                         SizedBox(height: 10.0),
-                         Divider(),
-                         SizedBox(height: 10.0),
-                        InkWell(
-                          onTap: () {
-                            
-                          },
-                          child: Row(
-                           
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: <Widget>[
-                              FaIcon(
-                                FontAwesomeIcons.certificate,
-                                size: 20.0,
-                              ),
-                              SizedBox(width:15),
-                              Text(
-                                'Certificates',
+                                'About Us',
                                 style: TextStyle(
                                     fontSize: 19.0,
                                     color: themeBlue,
@@ -192,6 +185,59 @@ class _MoreState extends State<More> {
                           ),
                         ),
                         SizedBox(height: 10.0),
+                       
+                        // SizedBox(height: 10.0),
+                        // InkWell(
+                        //   onTap: () {
+                        //     Navigator.push(
+                        //         context,
+                        //         MaterialPageRoute(
+                        //             builder: (context) => TrainingVideos()));
+                        //   },
+                        //   child: Row(
+                        //     crossAxisAlignment: CrossAxisAlignment.center,
+                        //     children: <Widget>[
+                        //       Icon(
+                        //         Icons.menu_book_sharp,
+                        //         size: 20.0,
+                        //       ),
+                        //       SizedBox(width: 15),
+                        //       Text(
+                        //         'Training Materials',
+                        //         style: TextStyle(
+                        //             fontSize: 19.0,
+                        //             color: themeBlue,
+                        //             fontWeight: FontWeight.w700,
+                        //             fontFamily: 'Signika Negative'),
+                        //       ),
+                        //     ],
+                        //   ),
+                        // ),
+                        // SizedBox(height: 10.0),
+                        // Divider(),
+                        // SizedBox(height: 10.0),
+                        // InkWell(
+                        //   onTap: () {},
+                        //   child: Row(
+                        //     crossAxisAlignment: CrossAxisAlignment.center,
+                        //     children: <Widget>[
+                        //       FaIcon(
+                        //         FontAwesomeIcons.certificate,
+                        //         size: 20.0,
+                        //       ),
+                        //       SizedBox(width: 15),
+                        //       Text(
+                        //         'Certificates',
+                        //         style: TextStyle(
+                        //             fontSize: 19.0,
+                        //             color: themeBlue,
+                        //             fontWeight: FontWeight.w700,
+                        //             fontFamily: 'Signika Negative'),
+                        //       ),
+                        //     ],
+                        //   ),
+                        // ),
+                        // SizedBox(height: 10.0),
                         Divider(),
                         SizedBox(height: 10.0),
                         InkWell(
@@ -202,7 +248,6 @@ class _MoreState extends State<More> {
                                     builder: (context) => HomePage()));
                           },
                           child: Row(
-                           
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
                               Icon(
@@ -211,7 +256,7 @@ class _MoreState extends State<More> {
                               ),
                               SizedBox(width: 15.0),
                               Text(
-                                'Notes',
+                                'My Notes',
                                 style: TextStyle(
                                     fontSize: 19.0,
                                     color: themeBlue,
@@ -225,23 +270,20 @@ class _MoreState extends State<More> {
                         Divider(),
                         SizedBox(height: 10.0),
                         InkWell(
-                          
-                             onTap: () {
+                          onTap: () {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => SavedVideos()));
-                          
                           },
                           child: Row(
-                          
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
                               Icon(
                                 Icons.bookmark,
                                 size: 20.0,
                               ),
-                               SizedBox(width: 15.0),
+                              SizedBox(width: 15.0),
                               Text(
                                 'Saved Videos',
                                 style: TextStyle(
@@ -253,9 +295,8 @@ class _MoreState extends State<More> {
                             ],
                           ),
                         ),
-                         SizedBox(height: 10.0),
+                        SizedBox(height: 10.0),
                         Divider(),
-                        
                         SizedBox(height: 10.0),
                         InkWell(
                           onTap: () {
@@ -265,14 +306,13 @@ class _MoreState extends State<More> {
                                     builder: (context) => Help()));
                           },
                           child: Row(
-                           
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
                               Icon(
                                 Icons.help_rounded,
                                 size: 20.0,
                               ),
-                               SizedBox(width: 15.0),
+                              SizedBox(width: 15.0),
                               Text(
                                 'Help',
                                 style: TextStyle(
@@ -295,14 +335,13 @@ class _MoreState extends State<More> {
                                     builder: (context) => AppSettings()));
                           },
                           child: Row(
-                            
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
                               Icon(
                                 Icons.settings,
                                 size: 20.0,
                               ),
-                                SizedBox(width: 15.0),
+                              SizedBox(width: 15.0),
                               Text(
                                 'Settings',
                                 style: TextStyle(
@@ -320,13 +359,11 @@ class _MoreState extends State<More> {
                         InkWell(
                           onTap: () {
                             Navigator.push(
-                                    context,
-                                    PageTransition(
-                                        type: PageTransitionType.rightToLeft,
-                                        child: TermsAndConditions()));
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Terms()));
                           },
                           child: Row(
-                            
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
                               Icon(
@@ -350,14 +387,13 @@ class _MoreState extends State<More> {
                         SizedBox(height: 10.0),
                         InkWell(
                           onTap: () {
-                             Navigator.push(
-                                    context,
-                                    PageTransition(
-                                        type: PageTransitionType.rightToLeft,
-                                        child: TermsAndConditions()));
+                            Navigator.push(
+                                context,
+                                PageTransition(
+                                    type: PageTransitionType.rightToLeft,
+                                    child: Privacy()));
                           },
                           child: Row(
-                            
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
                               Icon(
@@ -382,10 +418,10 @@ class _MoreState extends State<More> {
                       ])),
               SizedBox(height: 40.0),
               Column(
-                crossAxisAlignment:CrossAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    "version 1.0",
+                    "Version 1.0",
                     style: TextStyle(
                         fontSize: 18.0,
                         color: themeBlue,
@@ -434,7 +470,7 @@ class _MoreState extends State<More> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     Text(
-                      "You sure want to \n Sign Out?",
+                      "Are you sure want you to \n Sign out?",
                       style: TextStyle(
                         fontFamily: 'Signika Negative',
                         fontSize: 21.0,

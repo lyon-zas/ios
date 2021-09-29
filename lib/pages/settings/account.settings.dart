@@ -400,19 +400,17 @@ class _AccountSettingsState extends State<AccountSettings> {
     return Scaffold(
       
         appBar: AppBar(
-          leading: Container(
-              margin: EdgeInsets.only(top: 60, left: 20),
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.pop(context);
-                },
-                child: Container(
-                    height: 30,
-                    width: 30,
-                    child: Center(
-                      child: Icon(Icons.arrow_back_ios, color: themeGold),
-                    )), // this should route to the previous screen
-              )),
+          leading: GestureDetector(
+            onTap: () {
+              Navigator.pop(context);
+            },
+            child: Container(
+                height: 30,
+                width: 30,
+                child: Center(
+                  child: Icon(Icons.arrow_back_ios, color: themeGold),
+                )), // this should route to the previous screen
+          ),
           backgroundColor: themeBlue,
         centerTitle: true,
         title: Text(
@@ -446,18 +444,18 @@ class _AccountSettingsState extends State<AccountSettings> {
         children: [
           Container(
             width: double.infinity,
-            height: 150.0,
+            height: 250.0,
             child: Stack(
               children: [
-                Container(
-                  width: double.infinity,
-                  height: 100.0,
-                  color: Colors.white,
-                ),
+                // Container(
+                //   width: double.infinity,
+                //   height: 100.0,
+                //   color: Colors.white,
+                // ),
                 Container(
                   width: double.infinity,
                  
-                  child: Row(
+                  child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
@@ -465,8 +463,8 @@ class _AccountSettingsState extends State<AccountSettings> {
                         child: GestureDetector(
                           onTap: () {},
                           child: CircleAvatar(
-                            radius: 55,
-                            backgroundColor: Color(0xffFDCF09),
+                            radius: 70,
+                            
                             child: _image != null
                                 ? ClipRRect(
                                     borderRadius: BorderRadius.circular(50),
@@ -497,11 +495,11 @@ class _AccountSettingsState extends State<AccountSettings> {
                       
                       if (_user != null)
                   Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                       SizedBox(width: 10.0),
-                        SizedBox(height: 60.0),
+                       SizedBox(height: 10.0),
+                        
                     Container(
                   
                       child: Text(
@@ -515,6 +513,8 @@ class _AccountSettingsState extends State<AccountSettings> {
                       ),
                     ),
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                    // crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Text(
                             _user.subscription != null
@@ -553,34 +553,7 @@ class _AccountSettingsState extends State<AccountSettings> {
                       ), 
                     ],
                   ),
-                  SizedBox(height:20),
-                  Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Container(
-                              height: 56.0,
-                              width: 56.0,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(28.0),
-                                color: themeBlue,
-                              ),
-                              alignment: Alignment.center,
-                              child: IconButton(
-                                onPressed: () {
-                                  if (_user != null)
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                EditProfile(_user, _image)));
-                                },
-                                iconSize: 48,
-                                icon: Icon(Icons.edit,
-                                    size: 28.0, color: themeGold),
-                              ),
-                            ),
-                    ],
-                  ),
+                 
                     ],
                   ),
                 ),
@@ -702,7 +675,7 @@ class _AccountSettingsState extends State<AccountSettings> {
             ),
           ),
           
-          SizedBox(height: 25.0),
+          SizedBox(height: 5.0),
           Divider(),
           if (_user != null)
             Container(

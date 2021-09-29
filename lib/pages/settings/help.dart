@@ -226,6 +226,7 @@ class _HelpState extends State<Help> {
                     'BA Support Team',
                     'PMO Support Team',
                     'Programming Office',
+                    "Other",
                  
                 ].map<DropdownMenuItem<String>>((String value) {
                     return DropdownMenuItem<String>(
@@ -236,7 +237,7 @@ class _HelpState extends State<Help> {
                 }).toList(),
                 focusColor: Colors.grey[200],
                 hint: Text(
-                    "what would you like to discuss",
+                    "What would you like to discuss",
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 17,

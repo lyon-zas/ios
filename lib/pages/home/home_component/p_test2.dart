@@ -23,12 +23,12 @@ The navigation delegate is set to block navigation to the youtube website.
 </body>
 </html>
 ''';
-class UpcomingMeeting extends StatefulWidget {
+class Test extends StatefulWidget {
   @override
-  _UpcomingMeetingState createState() => _UpcomingMeetingState();
+  _TestState createState() => _TestState();
 }
 
-class _UpcomingMeetingState extends State<UpcomingMeeting> {
+class _TestState extends State<Test> {
    bool isLoading = true;
   final Completer<WebViewController> _controller =
       Completer<WebViewController>();
@@ -60,15 +60,7 @@ class _UpcomingMeetingState extends State<UpcomingMeeting> {
     );
   }
 
-  @override
-  void dispose() {
-    SystemChrome.setPreferredOrientations(
-        [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
-
-    super.dispose();
-  }
-
-      final GlobalKey webViewKey = GlobalKey();
+    final GlobalKey webViewKey = GlobalKey();
 
   InAppWebViewController webViewController;
   InAppWebViewGroupOptions options = InAppWebViewGroupOptions(
@@ -89,11 +81,19 @@ class _UpcomingMeetingState extends State<UpcomingMeeting> {
   final urlController = TextEditingController();
 
 
-  
 
-  
 
-  
+  @override
+  void dispose() {
+    SystemChrome.setPreferredOrientations(
+        [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+
+    super.dispose();
+  }
+
+
+
+    
     @override
     Widget build(BuildContext context) {
       return Scaffold(
@@ -102,10 +102,10 @@ class _UpcomingMeetingState extends State<UpcomingMeeting> {
           backgroundColor: themeBlue,
           centerTitle: true,
           title: Text(
-            'Upcoming Meetings',
+            'Personality Test',
             style: TextStyle(
               color: themeGold,
-              fontSize: 20.0,
+              fontSize: 25.0,
               fontWeight: FontWeight.w700,
             ),
           ),
@@ -236,8 +236,7 @@ class _UpcomingMeetingState extends State<UpcomingMeeting> {
               alignment: MainAxisAlignment.center,
               children: <Widget>[],
             ),
-          ]))
-      );
+          ]))      );
     } 
     JavascriptChannel _toasterJavascriptChannel(BuildContext context) {
     return JavascriptChannel(

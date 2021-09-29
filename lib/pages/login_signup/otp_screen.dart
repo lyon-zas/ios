@@ -358,7 +358,7 @@ class _OTPScreenState extends State<OTPScreen> {
                               color: Colors.grey[500],
                             ),
                           ),
-                          SizedBox(width: 10.0),
+                          SizedBox(width: 20.0),
                           InkWell(
                             onTap: () {
                               if (_start == 0) {

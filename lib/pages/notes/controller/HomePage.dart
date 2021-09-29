@@ -16,24 +16,36 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    notesViewType = viewType.Staggered;
+    notesViewType = viewType.List;
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: false,     
       appBar: AppBar(
+         automaticallyImplyLeading: false,
+        leading: GestureDetector(
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  child: Container(
+                      height: 30,
+                      width: 30,
+                      child: Center(
+                        child: Icon(Icons.arrow_back_ios, color: Colors.white),
+                      )), // this should route to the previous screen
+                ),
         iconTheme: IconThemeData(
           color: themeGold, //change your color here
         ),
         brightness: Brightness.light,
-        actions: _appBarActions(),
+        // actions: _appBarActions(),
         elevation: 1,
         backgroundColor: themeBlue,
         centerTitle: true,
         title: Text(
-          "MY NOTES",
+          "My Notes",
           style: TextStyle(
               color: themeGold
           ),

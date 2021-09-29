@@ -32,6 +32,8 @@ import 'package:tritek_lms/pages/login_signup/signup.dart';
 import 'package:tritek_lms/pages/login_signup/termsAndcond.dart';
 import 'package:tritek_lms/pages/payment/select_plan.dart';
 import 'package:tritek_lms/pages/settings/help.dart';
+import 'package:tritek_lms/pages/settings/privacy_policy.dart';
+import 'package:tritek_lms/pages/settings/terms_condition.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Login extends StatefulWidget {
@@ -666,144 +668,93 @@ class _LoginState extends State<Login> {
                     ),
                     SizedBox(height: 30),
                     Center(
-                      child: Column(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Image.asset(
+                          InkWell(
+                            onTap: () {
+                                  _googleLogin.handleSignIn().then((acc) => {
+                                        if (acc != null)
+                                          {
+                                            _loginGoogle(acc),
+                                          }
+                                      });
+                                },
+                            child: Container(
+                               width:50,
+                              height: 50,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(50),
+                              ),
+                              child: Center(
+                                child: Image.asset(
                                   'assets/google.png',
-                                  height: 28.0,
+                                  height: 25.0,
                                   fit: BoxFit.fitHeight,
                                 ),
-                                SizedBox(
-                                  width: 8,
-                                ),
-                                SizedBox(
-                                  height: 30.0,
-                                  width: 210,
-                                  child: Container(
-                                    color: Colors.white,
-                                    child: RaisedButton(
-                                      onPressed: () {
-                                        _googleLogin
-                                            .handleSignIn()
-                                            .then((acc) => {
-                                                  if (acc != null)
-                                                    {
-                                                      _loginGoogle(acc),
-                                                    }
-                                                });
-                                      },
-                                      child: Text(
-                                        'Register with Google',
-                                        style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 16.0,
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ]),
-                          SizedBox(height: 15),
-                          Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                FaIcon(FontAwesomeIcons.facebookF,
+                              ),
+                            ),
+                          ),
+                          InkWell(
+                            onTap: (){ FacebookAuth.instance.login(permissions: [
+                                    "public_profile",
+                                    "email"
+                                  ]).then((value) {
+                                    FacebookAuth.instance
+                                        .getUserData()
+                                        .then((userData) {
+                                      setState(() {
+                                        Navigator.push(
+                                            context,
+                                            PageTransition(
+                                                type: PageTransitionType
+                                                    .rightToLeft,
+                                                child: Home()));
+                                      });
+                                    });
+                                  });},
+                            child: Container(
+                              width:50,
+                              height: 50,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(50),
+                              ),
+                              child: Center(
+                                child: FaIcon(FontAwesomeIcons.facebookF,
                                     size: 30, color: Colors.blue),
-                                SizedBox(
-                                  width: 8.0,
-                                ),
-                                SizedBox(
-                                  height: 30.0,
-                                  width: 210,
-                                  child: Container(
-                                    color: Colors.white,
-                                    child: RaisedButton(
-                                      onPressed: () {
-                                        FacebookAuth.instance.login(
-                                            permissions: [
-                                              "public_profile",
-                                              "email"
-                                            ]).then((value) {
-                                          FacebookAuth.instance
-                                              .getUserData()
-                                              .then((userData) {
-                                            setState(() {
-                                              Navigator.push(
-                                                  context,
-                                                  PageTransition(
-                                                      type: PageTransitionType
-                                                          .rightToLeft,
-                                                      child: Home()));
-                                            });
-                                          });
-                                        });
-                                      },
-                                      child: Text(
-                                        'Register with FaceBook',
-                                        style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 16.0,
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ]),
-                          SizedBox(height: 10),
-                          Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                FaIcon(
+                              ),
+                            ),
+                          ),
+                          InkWell(
+                            onTap: (){},
+                            child: Container(
+                              width:50,
+                              height: 50,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(50),
+                              ),
+                              child: Center(
+                                child: FaIcon(
                                   FontAwesomeIcons.apple,
-                                  color: Colors.white,
+                                  color: Colors.black,
                                   size: 30,
                                 ),
-                                SizedBox(
-                                  width: 8.0,
-                                ),
-                                SizedBox(
-                                  height: 30.0,
-                                  width: 210,
-                                  child: Container(
-                                    color: Colors.white,
-                                    child: RaisedButton(
-                                      onPressed: () {},
-                                      child: Text(
-                                        'Register with Apple',
-                                        style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 16.0,
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ])
+                              ),
+                            ),
+                          )
                         ],
                       ),
                     ),
-
                     SizedBox(height: 40),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 30),
                       child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(
-                              'Need help? ',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16.0,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                            InkWell(
+                             InkWell(
                               onTap: () {
                                 Navigator.push(
                                     context,
@@ -812,18 +763,36 @@ class _LoginState extends State<Login> {
                                         child: Help()));
                               },
                               child: Text(
-                                'Contact Tritek Support',
+                                'Need help?',
                                 style: TextStyle(
-                                  decoration: TextDecoration.underline,
                                   color: Colors.blue[200],
+                                    decoration: TextDecoration.underline,
                                   fontSize: 16.0,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
-                            )
+                            ),
+                            // InkWell(
+                            //   onTap: () {
+                            //     Navigator.push(
+                            //         context,
+                            //         PageTransition(
+                            //             type: PageTransitionType.rightToLeft,
+                            //             child: Help()));
+                            //   },
+                            //   child: Text(
+                            //     'Contact Tritek Support',
+                            //     style: TextStyle(
+                            //       decoration: TextDecoration.underline,
+                            //       color: Colors.blue[200],
+                            //       fontSize: 16.0,
+                            //       fontWeight: FontWeight.w500,
+                            //     ),
+                            //   ),
+                            // )
                           ]),
                     ),
-                    SizedBox(height: 40),
+                    SizedBox(height: 20),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 30),
                       child: Container(
@@ -832,26 +801,25 @@ class _LoginState extends State<Login> {
                           'By signing in, you accept our',
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: 16.0,
+                            fontSize: 14.0,
                             fontWeight: FontWeight.w500,
                           ),
                         ),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: Container(
-                        alignment: Alignment.center,
+                    Center(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
                         child: Row(
+                          mainAxisAlignment:MainAxisAlignment.center,
                           children: [
                             InkWell(
                               onTap: () {
-                                Navigator.push(
-                                    context,
-                                    PageTransition(
-                                        type: PageTransitionType.rightToLeft,
-                                        child: TermsAndConditions()));
-                              },
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Terms()));
+                          },
                               child: Text(
                                 'Terms and Conditions',
                                 style: TextStyle(
@@ -872,12 +840,12 @@ class _LoginState extends State<Login> {
                             ),
                             InkWell(
                               onTap: () {
-                                 Navigator.push(
-                                    context,
-                                    PageTransition(
-                                        type: PageTransitionType.rightToLeft,
-                                        child: TermsAndConditions()));
-                              },
+                            Navigator.push(
+                                context,
+                                PageTransition(
+                                    type: PageTransitionType.rightToLeft,
+                                    child: Privacy()));
+                          },
                               child: Text(
                                 ' Privacy Policy.',
                                 style: TextStyle(
@@ -1003,7 +971,7 @@ class _LoginState extends State<Login> {
   }
 
   _loginGoogle(GoogleSignInAccount acc) async {
-    LoadingDialogs.showLoadingDialog(context, _keyLoader, 'Login you in...');
+    LoadingDialogs.showLoadingDialog(context, _keyLoader, 'Signing you in...');
     print(acc);
     try {
       final resp = await _repository.googleLogin(acc);

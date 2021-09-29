@@ -305,25 +305,7 @@ class _SearchState extends State<Search> {
           "Search",
           style: TextStyle(color: themeGold),
         ),
-        actions: <Widget>[
-         
-          IconButton(
-            icon: Icon(Icons.notifications),
-            color: themeGold,
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => Notifications()));
-            },
-          ),
-          IconButton(
-            icon: Icon(Icons.search),
-            color: themeGold,
-            onPressed: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => Search()));
-            },
-          ),
-        ],
+        
         automaticallyImplyLeading: false,
       ),
       body: StreamBuilder<CoursesResponse>(

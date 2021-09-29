@@ -19,10 +19,11 @@ import 'package:tritek_lms/pages/login_signup/login.dart';
 import 'package:tritek_lms/pages/login_signup/otp_screen.dart';
 import 'package:tritek_lms/pages/login_signup/termsAndcond.dart';
 import 'package:tritek_lms/pages/settings/help.dart';
+import 'package:tritek_lms/pages/settings/privacy_policy.dart';
+import 'package:tritek_lms/pages/settings/terms_condition.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class SignUp extends StatefulWidget {
-  
   @override
   _SignUpState createState() => _SignUpState();
 }
@@ -60,7 +61,7 @@ class _SignUpState extends State<SignUp> {
   CameraDescription cameraDescription;
   bool loading = false;
 
-  /// 1 Obtain a list of the available cameras on the device.
+  /// 1 Obtain a list of the availaPble cameras on the device.
   /// 2 loads the face net model
   _startUp() async {
     _setLoading(true);
@@ -133,24 +134,24 @@ class _SignUpState extends State<SignUp> {
               ),
             ),
           ),
-           
           Positioned(
             child: Scaffold(
               appBar: AppBar(
-                elevation:0.0,
+                elevation: 0.0,
                 backgroundColor: Colors.transparent,
-                leadingWidth:60,
+                leadingWidth: 60,
                 leading: GestureDetector(
-                onTap: () {
-                  Navigator.pop(context);
-                },
-                child: Container(
-                    height: 30,
-                    width: 30,
-                    child: Center(
-                      child: Icon(Icons.arrow_back_ios, color: Colors.white),
-                    )), // this should route to the previous screen
-              ),),
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  child: Container(
+                      height: 30,
+                      width: 30,
+                      child: Center(
+                        child: Icon(Icons.arrow_back_ios, color: Colors.white),
+                      )), // this should route to the previous screen
+                ),
+              ),
               backgroundColor: Colors.transparent,
               body: Form(
                 key: _formKey,
@@ -170,11 +171,10 @@ class _SignUpState extends State<SignUp> {
                               fontWeight: FontWeight.w600,
                             ),
                           ),
-                          
                         ],
                       ),
                     ),
-             
+
                     SizedBox(height: 50.0),
                     Padding(
                       padding: EdgeInsets.only(left: 20.0),
@@ -193,7 +193,6 @@ class _SignUpState extends State<SignUp> {
                       child: Container(
                         decoration: BoxDecoration(
                           color: Colors.grey[200].withOpacity(0.3),
-                          
                         ),
                         child: TextFormField(
                           focusNode: _firstNameFocusNode,
@@ -212,7 +211,6 @@ class _SignUpState extends State<SignUp> {
                           ),
                           decoration: InputDecoration(
                             contentPadding: EdgeInsets.only(left: 20.0),
-                           
                             hintStyle: TextStyle(
                               color: Colors.white,
                               fontSize: 14.0,
@@ -246,7 +244,6 @@ class _SignUpState extends State<SignUp> {
                       child: Container(
                         decoration: BoxDecoration(
                           color: Colors.grey[200].withOpacity(0.3),
-                        
                         ),
                         child: TextFormField(
                           focusNode: _lastNameFocusNode,
@@ -264,7 +261,6 @@ class _SignUpState extends State<SignUp> {
                           ),
                           decoration: InputDecoration(
                             contentPadding: EdgeInsets.only(left: 20.0),
-                             
                             hintStyle: TextStyle(
                               color: Colors.white,
                               fontSize: 14.0,
@@ -298,7 +294,6 @@ class _SignUpState extends State<SignUp> {
                       child: Container(
                         decoration: BoxDecoration(
                           color: Colors.grey[200].withOpacity(0.3),
-                          
                         ),
                         child: TextFormField(
                           focusNode: _emailFocusNode,
@@ -315,7 +310,6 @@ class _SignUpState extends State<SignUp> {
                           ),
                           decoration: InputDecoration(
                             contentPadding: EdgeInsets.only(left: 20.0),
-                            
                             hintStyle: TextStyle(
                               color: Colors.white,
                               fontSize: 14.0,
@@ -349,7 +343,6 @@ class _SignUpState extends State<SignUp> {
                       child: Container(
                         decoration: BoxDecoration(
                           color: Colors.grey[200].withOpacity(0.3),
-                       
                         ),
                         child: TextFormField(
                           focusNode: _usernameFocusNode,
@@ -367,7 +360,6 @@ class _SignUpState extends State<SignUp> {
                           ),
                           decoration: InputDecoration(
                             contentPadding: EdgeInsets.only(left: 20.0),
-                            
                             hintStyle: TextStyle(
                               color: Colors.white,
                               fontSize: 14.0,
@@ -401,7 +393,6 @@ class _SignUpState extends State<SignUp> {
                       child: Container(
                         decoration: BoxDecoration(
                           color: Colors.grey[200].withOpacity(0.3),
-                          
                         ),
                         child: TextFormField(
                           focusNode: _passwordFocusNode,
@@ -420,7 +411,6 @@ class _SignUpState extends State<SignUp> {
                           decoration: InputDecoration(
                             contentPadding: EdgeInsets.only(
                                 left: 20.0, top: 13.0, bottom: 12.0),
-                        
                             hintStyle: TextStyle(
                               color: Colors.white,
                               // fontSize: 16.0,
@@ -443,7 +433,6 @@ class _SignUpState extends State<SignUp> {
                         height: 50.0,
                         child: Container(
                           decoration: BoxDecoration(
-                            
                             gradient: LinearGradient(
                               begin: Alignment.centerLeft,
                               end: Alignment.bottomRight,
@@ -456,7 +445,6 @@ class _SignUpState extends State<SignUp> {
                             ),
                           ),
                           child: RaisedButton(
-                            
                             onPressed: () {
                               if (_formKey.currentState.validate()) {
                                 _formKey.currentState.save();
@@ -491,12 +479,13 @@ class _SignUpState extends State<SignUp> {
                               ),
                             ),
                             InkWell(
-                              onTap: () { Navigator.push(
-                                              context,
-                                              PageTransition(
-                                                  type: PageTransitionType
-                                                      .rightToLeft,
-                                                  child: Login(null,null)));},
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    PageTransition(
+                                        type: PageTransitionType.rightToLeft,
+                                        child: Login(null, null)));
+                              },
                               child: Text(
                                 'Sign in',
                                 style: TextStyle(
@@ -509,7 +498,7 @@ class _SignUpState extends State<SignUp> {
                             )
                           ]),
                     ),
-                     SizedBox(height: 30),
+                    SizedBox(height: 30),
 
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -525,7 +514,7 @@ class _SignUpState extends State<SignUp> {
                               )),
                         ),
                         Text(
-                          "Or sign in with",
+                          "Or register with",
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 16.0,
@@ -544,123 +533,85 @@ class _SignUpState extends State<SignUp> {
                         ),
                       ]),
                     ),
-                   SizedBox(height: 30),
+                    SizedBox(height: 30),
                     Center(
-                      child: Column(
-                       
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          Row(mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Image.asset(
-                                'assets/google.png',
-                                height: 28.0,
-                                fit: BoxFit.fitHeight,
-                              ),
-                              SizedBox(
-                              
-                              width: 8,),
-                            SizedBox(
-                              height: 30.0,
-                              width: 210,
-                              child: Container(
+                          InkWell(
+                            onTap: () {
+                                  _googleLogin.handleSignIn().then((acc) => {
+                                        if (acc != null)
+                                          {
+                                            _loginGoogle(acc),
+                                          }
+                                      });
+                                },
+                            child: Container(
+                               width:50,
+                              height: 50,
+                              decoration: BoxDecoration(
                                 color: Colors.white,
-                                child: RaisedButton(
-                                  onPressed: () {
-                                    _googleLogin.handleSignIn().then((acc) => {
-                                          if (acc != null)
-                                            {
-                                              _loginGoogle(acc),
-                                            }
-                                        });
-                                  },
-                                  child: Text(
-                                    'Register with Google',
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 16.0,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
+                                borderRadius: BorderRadius.circular(50),
+                              ),
+                              child: Center(
+                                child: Image.asset(
+                                  'assets/google.png',
+                                  height: 25.0,
+                                  fit: BoxFit.fitHeight,
                                 ),
                               ),
                             ),
-                          ]),
-                          SizedBox(height: 15),
-                          Row(mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                            
-                            FaIcon(FontAwesomeIcons.facebookF,
-                                size: 30, color: Colors.blue),
-                            SizedBox(
-                              width: 8.0,
-                            ),
-                            SizedBox(
-                              height: 30.0,
-                              width: 210,
-                              child: Container(
-                                color: Colors.white,
-                                child: RaisedButton(
-                                  onPressed: () {
-                                    FacebookAuth.instance.login(permissions: [
-                                      "public_profile",
-                                      "email"
-                                    ]).then((value) {
-                                      FacebookAuth.instance
-                                          .getUserData()
-                                          .then((userData) {
-                                        setState(() {
-                                          Navigator.push(
-                                              context,
-                                              PageTransition(
-                                                  type: PageTransitionType
-                                                      .rightToLeft,
-                                                  child: Home()));
-                                        });
+                          ),
+                          InkWell(
+                            onTap: (){ FacebookAuth.instance.login(permissions: [
+                                    "public_profile",
+                                    "email"
+                                  ]).then((value) {
+                                    FacebookAuth.instance
+                                        .getUserData()
+                                        .then((userData) {
+                                      setState(() {
+                                        Navigator.push(
+                                            context,
+                                            PageTransition(
+                                                type: PageTransitionType
+                                                    .rightToLeft,
+                                                child: Home()));
                                       });
                                     });
-                                  },
-                                  child: Text(
-                                    'Register with FaceBook',
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 16.0,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ]),
-                          SizedBox(height: 10),
-                          Row(mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                            FaIcon(
-                              FontAwesomeIcons.apple,
-                              color: Colors.white,
-                              size: 30,
-                            ),
-                            SizedBox(
-                              width: 8.0,
-                            ),
-                            SizedBox(
-                              height: 30.0,
-                              width: 210,
-                              child: Container(
+                                  });},
+                            child: Container(
+                              width:50,
+                              height: 50,
+                              decoration: BoxDecoration(
                                 color: Colors.white,
-                                child: RaisedButton(
-                                  onPressed: () {},
-                                  child: Text(
-                                    'Register with Apple',
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 16.0,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
+                                borderRadius: BorderRadius.circular(50),
+                              ),
+                              child: Center(
+                                child: FaIcon(FontAwesomeIcons.facebookF,
+                                    size: 30, color: Colors.blue),
+                              ),
+                            ),
+                          ),
+                          InkWell(
+                            onTap: (){},
+                            child: Container(
+                              width:50,
+                              height: 50,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(50),
+                              ),
+                              child: Center(
+                                child: FaIcon(
+                                  FontAwesomeIcons.apple,
+                                  color: Colors.black,
+                                  size: 30,
                                 ),
                               ),
                             ),
-                          ])
+                          )
                         ],
                       ),
                     ),
@@ -670,33 +621,42 @@ class _SignUpState extends State<SignUp> {
                       child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(
-                              'Need help? ',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16.0,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                            InkWell(
+                             InkWell(
                               onTap: () {
                                 Navigator.push(
-                                              context,
-                                              PageTransition(
-                                                  type: PageTransitionType
-                                                      .rightToLeft,
-                                                  child: Help()));
+                                    context,
+                                    PageTransition(
+                                        type: PageTransitionType.rightToLeft,
+                                        child: Help()));
                               },
                               child: Text(
-                                'Contact Tritek Support',
+                                'Need help?',
                                 style: TextStyle(
-                                  decoration: TextDecoration.underline,
                                   color: Colors.blue[200],
+                                    decoration: TextDecoration.underline,
                                   fontSize: 16.0,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
-                            )
+                            ),
+                            // InkWell(
+                            //   onTap: () {
+                            //     Navigator.push(
+                            //         context,
+                            //         PageTransition(
+                            //             type: PageTransitionType.rightToLeft,
+                            //             child: Help()));
+                            //   },
+                            //   child: Text(
+                            //     'Contact Tritek Support',
+                            //     style: TextStyle(
+                            //       decoration: TextDecoration.underline,
+                            //       color: Colors.blue[200],
+                            //       fontSize: 16.0,
+                            //       fontWeight: FontWeight.w500,
+                            //     ),
+                            //   ),
+                            // )
                           ]),
                     ),
                     SizedBox(height: 40),
@@ -714,62 +674,67 @@ class _SignUpState extends State<SignUp> {
                         ),
                       ),
                     ),
-                   Padding(
+                    Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: Container(
                         alignment: Alignment.center,
                         child: Row(
                           children: [
                             InkWell(
-                              onTap:(){ 
+                              onTap: () {
                             Navigator.push(
-                                    context,
-                                    PageTransition(
-                                        type: PageTransitionType.rightToLeft,
-                                        child: TermsAndConditions()));
-                              },
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Terms()));
+                          },
                               child: Text(
                                 'Terms and Conditions',
                                 style: TextStyle(
-                                    decoration: TextDecoration.underline,
-                                    color: Colors.blue[200],
-                                    fontSize: 12.0,
-                                    fontWeight: FontWeight.w500,
-                                  ),
+                                  decoration: TextDecoration.underline,
+                                  color: Colors.blue[200],
+                                  fontSize: 12.0,
+                                  fontWeight: FontWeight.w500,
+                                ),
                               ),
                             ),
-                             Text(
+                            Text(
                               ' and acknowledge the',
-                             style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 12.0,
-                            fontWeight: FontWeight.w500,
-                          ),
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 12.0,
+                                fontWeight: FontWeight.w500,
+                              ),
                             ),
                             InkWell(
-                              onTap:(){},
+                              onTap: () {
+                            Navigator.push(
+                                context,
+                                PageTransition(
+                                    type: PageTransitionType.rightToLeft,
+                                    child: Privacy()));
+                          },
                               child: Text(
                                 ' Privacy Policy.',
                                 style: TextStyle(
-                                    decoration: TextDecoration.underline,
-                                    color: Colors.blue[200],
-                                    fontSize: 12.0,
-                                    fontWeight: FontWeight.w500,
-                                  ),
+                                  decoration: TextDecoration.underline,
+                                  color: Colors.blue[200],
+                                  fontSize: 12.0,
+                                  fontWeight: FontWeight.w500,
+                                ),
                               ),
                             ),
                           ],
                         ),
                       ),
                     ),
-                    SizedBox(height:15)
+                    SizedBox(height: 15)
                     // SizedBox(height: 30.0),
                     // Padding(
                     //   padding: EdgeInsets.symmetric(horizontal: 20.0),
                     //   child: InkWell(
                     //     borderRadius: BorderRadius.circular(30.0),
                     //     onTap: () {
-                          
+
                     //       _googleLogin.handleSignIn().then((acc) =>
                     //       {
                     //         if (acc != null) {
@@ -868,7 +833,8 @@ class _SignUpState extends State<SignUp> {
     Navigator.push(context,
         PageTransition(type: PageTransitionType.rightToLeft, child: Home()));
   }
-   _launchURL(String url) async {
+
+  _launchURL(String url) async {
     if (await canLaunch(url)) {
       await launch(url);
     } else {

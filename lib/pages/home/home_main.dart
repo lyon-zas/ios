@@ -19,11 +19,16 @@ class HomeMain extends StatefulWidget {
   @override
   _HomeMainState createState() => _HomeMainState();
 }
+ extension CapExtension on String {
+  String get inCaps => '${this[0].toUpperCase()}${this.substring(1)}';
+ 
+}
 
 class _HomeMainState extends State<HomeMain> {
   File _image;
   final userBloc = UserBloc();
   Users _user;
+ 
   @override
   void initState() {
     super.initState();
@@ -35,7 +40,7 @@ class _HomeMainState extends State<HomeMain> {
         _user = value?.results;
       });
     });
-    
+
     userBloc.userSubject.listen((value) {
       if (!mounted) {
         return;
@@ -64,86 +69,85 @@ class _HomeMainState extends State<HomeMain> {
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
           return <Widget>[
             SliverAppBar(
-              expandedHeight: 50,
               pinned: true,
               backgroundColor: themeBlue,
-              title: _user != null
-                  ? Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      // crossAxisAlignment: CrossAxisAlignment.end,
-                      children: <Widget>[
-                        InkWell(
-                          onTap: () {
-                            // Navigator.push(context,
-                            //     MaterialPageRoute(builder: (context) => AccountSettings()));
-                          },
-                          child: Container(
-                            height: 26.0,
-                            width: 26.0,
-                            margin: EdgeInsets.all(10.0),
-                            decoration: BoxDecoration(
-                              image: DecorationImage(
-                                image: AssetImage('assets/icon.png'),
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
-                        ),
-                        Text(
-                          appName,
-                          style: TextStyle(
-                            fontFamily: 'Signika Negative',
-                            fontWeight: FontWeight.w700,
-                            fontSize: 25.0,
-                            color: themeGold,
-                          ),
-                        ),
-                      ],
-                    )
-                  :
-                  // _user?.username
-                  Row(
-                      children: [
-                        Text(
-                          "Hi ",
-                          style: TextStyle(
-                            fontFamily: 'Signika Negative',
-                            fontWeight: FontWeight.w700,
-                            fontSize: 25.0,
-                            color: Colors.white,
-                          ),
-                        ),
-                        // itemTile( _user?.username),
-                        Text(
-                        ("${_user?.firstName}")
-                            .toUpperCase(),
-                        style: TextStyle(
-                          color: themeGold,
-                          fontSize: 18.0,
-                          fontWeight: FontWeight.bold,
+              title: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                // crossAxisAlignment: CrossAxisAlignment.end,
+                children: <Widget>[
+                  InkWell(
+                    onTap: () {
+                      // Navigator.push(context,
+                      //     MaterialPageRoute(builder: (context) => AccountSettings()));
+                    },
+                    child: Container(
+                      height: 26.0,
+                      width: 26.0,
+                      margin: EdgeInsets.all(10.0),
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage("assets/logo.png",),
+                          fit: BoxFit.cover,
                         ),
                       ),
-                      ],
                     ),
-             actions: <Widget>[
-         
-          IconButton(
-            icon: Icon(Icons.notifications),
-            color: themeGold,
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => Notifications()));
-            },
-          ),
-          IconButton(
-            icon: Icon(Icons.search),
-            color: themeGold,
-            onPressed: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => Search()));
-            },
-          ),
-        ],
+                  ),
+                  _user != null
+                  ? Row(
+                    children: [
+                      Text(
+                        "Hi ",
+                        style: TextStyle(
+                          fontFamily: 'Signika Negative',
+                          fontWeight: FontWeight.w700,
+                          fontSize: 25.0,
+                          color: themeGold,
+                        ),
+                      ),
+                       Text(
+                    ("${_user?.firstName}").inCaps,
+                    style: TextStyle(
+                      fontFamily: 'Signika Negative',
+                      fontWeight: FontWeight.w700,
+                      fontSize: 25.0,
+                      color: themeGold,
+                    ),
+                  ),
+                    ],
+                  ):
+                  Text(
+                    ("Home"),
+                    style: TextStyle(
+                      fontFamily: 'Signika Negative',
+                      fontWeight: FontWeight.w700,
+                      fontSize: 25.0,
+                      color: themeGold,
+                    ),
+                  ),
+                ],
+              ),
+              actions: <Widget>[
+                IconButton(
+                  icon: Icon(Icons.search),
+                  iconSize: 30,
+                  color: themeGold,
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Search()));
+                  },
+                ),
+                IconButton(
+                  icon: Icon(Icons.notifications),
+                  iconSize: 30,
+                  color: themeGold,
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => Notifications()));
+                  },
+                ),
+              ],
               automaticallyImplyLeading: false,
             ),
           ];
@@ -159,14 +163,24 @@ class _HomeMainState extends State<HomeMain> {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => CoursesList()));
                   },
-                  child: Text(
-                    "Courses",
-                    style: TextStyle(
-                      fontFamily: 'Signika Negative',
-                      fontWeight: FontWeight.w700,
-                      fontSize: 25.0,
-                      color: themeBlue,
-                    ),
+                  child: Row(
+                    children: [
+                      Text(
+                        "Courses",
+                        style: TextStyle(
+                          fontFamily: 'Signika Negative',
+                          fontWeight: FontWeight.w700,
+                          fontSize: 25.0,
+                          color: themeBlue,
+                        ),
+                      ),
+                      IconButton(
+                        icon: Icon(Icons.arrow_forward_ios_sharp),
+                        iconSize: 15,
+                        color: themeGold,
+                        onPressed: () {},
+                      )
+                    ],
                   ),
                 ),
               ),
@@ -187,11 +201,11 @@ class _HomeMainState extends State<HomeMain> {
               //           ),
               //         ),
               //       ),
-                    
+
               //     ])),
               InkWell(
-                onTap: (){
-                    Navigator.push(
+                onTap: () {
+                  Navigator.push(
                       context,
                       MaterialPageRoute(
                           builder: (context) => UpcomingMeeting()));
@@ -202,16 +216,27 @@ class _HomeMainState extends State<HomeMain> {
                         children: [
                       Padding(
                         padding: const EdgeInsets.only(top: 20, bottom: 6.0),
-                        child: Text(
-                          "Upcoming Meeting",
-                          style: TextStyle(
-                            fontFamily: 'Signika Negative',
-                            fontWeight: FontWeight.w700,
-                            fontSize: 25.0,
-                            color: themeBlue,
-                          ),
+                        child: Row(
+                          children: [
+                            Text(
+                              "Upcoming Meeting",
+                              style: TextStyle(
+                                fontFamily: 'Signika Negative',
+                                fontWeight: FontWeight.w700,
+                                fontSize: 25.0,
+                                color: themeBlue,
+                              ),
+                            ),
+                            IconButton(
+                              icon: Icon(Icons.arrow_forward_ios_sharp),
+                              iconSize: 15,
+                              color: themeGold,
+                              onPressed: () {},
+                            )
+                          ],
                         ),
-                      ), Image.asset(
+                      ),
+                      Image.asset(
                         "assets/calender.JPG",
                         height: (height / 4),
                         width: MediaQuery.of(context).size.width,
@@ -232,14 +257,24 @@ class _HomeMainState extends State<HomeMain> {
                         children: [
                       Padding(
                         padding: const EdgeInsets.only(top: 20, bottom: 6.0),
-                        child: Text(
-                          "Personality Test",
-                          style: TextStyle(
-                            fontFamily: 'Signika Negative',
-                            fontWeight: FontWeight.w700,
-                            fontSize: 25.0,
-                            color: themeBlue,
-                          ),
+                        child: Row(
+                          children: [
+                            Text(
+                              "Personality Test",
+                              style: TextStyle(
+                                fontFamily: 'Signika Negative',
+                                fontWeight: FontWeight.w700,
+                                fontSize: 25.0,
+                                color: themeBlue,
+                              ),
+                            ),
+                            IconButton(
+                              icon: Icon(Icons.arrow_forward_ios_sharp),
+                              iconSize: 15,
+                              color: themeGold,
+                              onPressed: () {},
+                            )
+                          ],
                         ),
                       ),
                       Image.asset(
@@ -250,7 +285,7 @@ class _HomeMainState extends State<HomeMain> {
                       ),
                     ])),
               ),
-              SizedBox(height:30)
+              SizedBox(height: 30)
             ],
           ),
         ), //remove

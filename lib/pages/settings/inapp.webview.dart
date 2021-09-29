@@ -22,6 +22,7 @@ class _WebviewInApp extends State<WebviewInApp> {
       home: Scaffold(
           appBar: AppBar(
             backgroundColor: themeBlue,
+            
             title: Text(
               appName,
               style: TextStyle(
@@ -35,6 +36,7 @@ class _WebviewInApp extends State<WebviewInApp> {
           body: Stack(
             children: [
               InAppWebView(
+             
                 initialUrlRequest: URLRequest(url: Uri.parse(widget.url)),
                 initialOptions: InAppWebViewGroupOptions(
                     crossPlatform: InAppWebViewOptions(

@@ -1,74 +1,19 @@
-import 'dart:async';
 import 'dart:io';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:tritek_lms/appTheme/appTheme.dart';
 import 'package:tritek_lms/pages/notifications.dart';
 import 'package:tritek_lms/pages/search.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 
-const String kNavigationExamplePage = '''
-<!DOCTYPE html><html>
-<head><title>Navigation Delegate Example</title></head>
-<body>
-<p>
-The navigation delegate is set to block navigation to the youtube website.
-</p>
-<ul>
-<ul><a href="https://www.youtube.com/">https://www.youtube.com/</a></ul>
-<ul><a href="https://www.google.com/">https://www.google.com/</a></ul>
-</ul>
-</body>
-</html>
-''';
-class UpcomingMeeting extends StatefulWidget {
+class Terms extends StatefulWidget {
   @override
-  _UpcomingMeetingState createState() => _UpcomingMeetingState();
+  _TermsState createState() => new _TermsState();
 }
 
-class _UpcomingMeetingState extends State<UpcomingMeeting> {
-   bool isLoading = true;
-  final Completer<WebViewController> _controller =
-      Completer<WebViewController>();
-  @override
-  void initState() {
-    super.initState();
-    // Enable hybrid composition.
-    // if (Platform.isAndroid) WebView.platform = SurfaceAndroidWebView();
-
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.landscapeLeft,
-      DeviceOrientation.landscapeRight,
-      DeviceOrientation.portraitDown,
-      DeviceOrientation.portraitUp
-    ]);
-
-    pullToRefreshController = PullToRefreshController(
-      options: PullToRefreshOptions(
-        color: Colors.blue,
-      ),
-      onRefresh: () async {
-        if (Platform.isAndroid) {
-          webViewController?.reload();
-        } else if (Platform.isIOS) {
-          webViewController?.loadUrl(
-              urlRequest: URLRequest(url: await webViewController?.getUrl()));
-        }
-      },
-    );
-  }
-
-  @override
-  void dispose() {
-    SystemChrome.setPreferredOrientations(
-        [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
-
-    super.dispose();
-  }
-
-      final GlobalKey webViewKey = GlobalKey();
+class _TermsState extends State<Terms> {
+  final GlobalKey webViewKey = GlobalKey();
 
   InAppWebViewController webViewController;
   InAppWebViewGroupOptions options = InAppWebViewGroupOptions(
@@ -88,24 +33,43 @@ class _UpcomingMeetingState extends State<UpcomingMeeting> {
   double progress = 0;
   final urlController = TextEditingController();
 
+  @override
+  void initState() {
+    super.initState();
 
-  
+    pullToRefreshController = PullToRefreshController(
+      options: PullToRefreshOptions(
+        color: Colors.blue,
+      ),
+      onRefresh: () async {
+        if (Platform.isAndroid) {
+          webViewController?.reload();
+        } else if (Platform.isIOS) {
+          webViewController?.loadUrl(
+              urlRequest: URLRequest(url: await webViewController?.getUrl()));
+        }
+      },
+    );
+  }
 
-  
+  @override
+  void dispose() {
+    super.dispose();
+  }
 
-  
-    @override
-    Widget build(BuildContext context) {
-      return Scaffold(
-        appBar: AppBar(
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+          appBar: AppBar(
           elevation: 0.0,
           backgroundColor: themeBlue,
           centerTitle: true,
           title: Text(
-            'Upcoming Meetings',
+            'Terms & Conditions',
             style: TextStyle(
               color: themeGold,
-              fontSize: 20.0,
+              fontSize: 25.0,
               fontWeight: FontWeight.w700,
             ),
           ),
@@ -144,7 +108,7 @@ class _UpcomingMeetingState extends State<UpcomingMeeting> {
             ),
           ],
         ),
-        body: SafeArea(
+          body: SafeArea(
               child: Column(children: <Widget>[
             Expanded(
               child: Stack(
@@ -152,7 +116,7 @@ class _UpcomingMeetingState extends State<UpcomingMeeting> {
                   InAppWebView(
                     key: webViewKey,
                     initialUrlRequest: URLRequest(
-                        url: Uri.parse('https://mytritek.co.uk/video-conferencing/')),
+                        url: Uri.parse("https://mytritek.co.uk/terms-and-conditions")),
                     initialOptions: options,
                     pullToRefreshController: pullToRefreshController,
                     onWebViewCreated: (controller) {
@@ -236,19 +200,7 @@ class _UpcomingMeetingState extends State<UpcomingMeeting> {
               alignment: MainAxisAlignment.center,
               children: <Widget>[],
             ),
-          ]))
-      );
-    } 
-    JavascriptChannel _toasterJavascriptChannel(BuildContext context) {
-    return JavascriptChannel(
-        name: 'Toaster',
-        onMessageReceived: (JavascriptMessage message) {
-          // ignore: deprecated_member_use
-          Scaffold.of(context).showSnackBar(
-            SnackBar(content: Text(message.message)),
-          );
-        });
+          ]))),
+    );
   }
-
-  }
-
+}

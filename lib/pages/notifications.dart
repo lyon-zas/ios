@@ -44,29 +44,7 @@ class _NotificationsState extends State<Notifications> {
               color: themeGold
           ),
         ),
-         actions: <Widget>[
-                
-                IconButton(
-                  icon: Icon(Icons.notifications),
-                  color: themeGold,
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => Notifications()));
-                  },
-                ),
-                IconButton(
-                  icon: Icon(Icons.search),
-                  color: themeGold,
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => Search()));
-                  },
-                ),
-                 ],
+         
         titleSpacing: 0.0,
       ),
       backgroundColor: const Color(0xFFF1F3F6),

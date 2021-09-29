@@ -37,7 +37,7 @@ class CarouselImageItem extends StatelessWidget {
         ),
         child: BackdropFilter(
           // filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
-          filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
+          filter: ImageFilter.blur(sigmaX: 0.0, sigmaY: 0.0),
           child: Container(
             decoration: new BoxDecoration(color: Colors.black.withOpacity(0.3)),
             child: Column(

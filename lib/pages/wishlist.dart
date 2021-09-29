@@ -236,71 +236,63 @@ class _WishlistState extends State<Wishlist> {
       return NestedScrollView(
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
             return <Widget>[
-              SliverAppBar(
-                expandedHeight: 50,
-                
-                pinned: true,
-                backgroundColor: themeBlue,
-                actions: <Widget>[
-                  IconButton(
-                    icon: Icon(Icons.search),
-                    iconSize: 30,
-                    color: themeGold,
-                    onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Search()));
-                    },
-                  ),
-                  IconButton(
-                    icon: Icon(Icons.notifications),
-                    iconSize: 30,
-                    color: themeGold,
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => Notifications()));
-                    },
-                  ),
-                ],
-                flexibleSpace: LayoutBuilder(builder:
-                    (BuildContext context, BoxConstraints constraints) {
-                  return FlexibleSpaceBar(
-                      centerTitle: false,
-                      title: AnimatedOpacity(
-                        duration: Duration(milliseconds: 300),
-                        opacity: 1.0,
-                        child: Container(
-                         
-                          decoration: BoxDecoration(
-                            color: themeBlue,
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: <Widget>[
-                              Text(
-                                'Favourite',
-                                style: TextStyle(
-                                  fontFamily: 'Signika Negative',
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 30.0,
-                                  color: themeGold,
-                                ),
-                              ),
-                            ],
-                          ),
+             SliverAppBar(
+             
+              pinned: true,
+              backgroundColor: themeBlue,
+              title: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                // crossAxisAlignment: CrossAxisAlignment.end,
+                children: <Widget>[
+                  Container(
+                      height: 26.0,
+                      width: 26.0,
+                      margin: EdgeInsets.all(10.0),
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage("assets/logo.png"),
+                          fit: BoxFit.cover,
                         ),
                       ),
-                      background: Container(
-                        padding: EdgeInsets.all(20.0),
-                        alignment: Alignment.bottomLeft,
-                        decoration: BoxDecoration(color: themeBlue),
-                      ));
-                }),
-                automaticallyImplyLeading: false,
+                    ),
+                    SizedBox(height:5),
+                  Text(
+                    "Favourites",
+                    style: TextStyle(
+                      fontFamily: 'Signika Negative',
+                      fontWeight: FontWeight.w700,
+                      fontSize: 25.0,
+                      color: themeGold,
+                    ),
+                  ),
+                ],
               ),
-            ];
-          },
+              actions: <Widget>[
+                IconButton(
+                  icon: Icon(Icons.search),
+                  iconSize: 30,
+                  color: themeGold,
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Search()));
+                  },
+                ),
+                IconButton(
+                  icon: Icon(Icons.notifications),
+                  iconSize: 30,
+                  color: themeGold,
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => Notifications()));
+                  },
+                ),
+              ],
+              automaticallyImplyLeading: false,
+            ),
+          ];
+        },
           body: StreamBuilder<WishListResponse>(
             stream: wishListBloc.list.stream,
             builder: (context, AsyncSnapshot<WishListResponse> snapshot) {

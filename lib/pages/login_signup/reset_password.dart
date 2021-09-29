@@ -39,7 +39,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
   String _password;
 
   Timer _timer;
-  int _start = 60;
+  int _start = 100;
 
   void startTimer() {
     _timer = new Timer.periodic(
@@ -65,7 +65,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
   @override
   void initState() {
     super.initState();
-    _start = 60;
+    _start = 100;
     startTimer();
   }
 
@@ -109,40 +109,46 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                 ),
               ),
             ),
-            Container(
-              margin: EdgeInsets.only(top: 60, left: 20),
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.pop(context);
-                },
-                child: Container(
-                    height: 30,
-                    width: 30,
-                    child: Center(
-                      child: Icon(Icons.arrow_back_ios, color: Colors.white),
-                    )), // this should route to the previous screen
-              )),
+          
             Positioned(
               child: Scaffold(
+                appBar: AppBar(
+                elevation: 0.0,
+                backgroundColor: Colors.transparent,
+                leadingWidth: 60,
+                leading: GestureDetector(
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  child: Container(
+                      height: 30,
+                      width: 30,
+                      child: Center(
+                        child: Icon(Icons.arrow_back_ios, color: Colors.white),
+                      )), // this should route to the previous screen
+                ),
+              ),
                 backgroundColor: Colors.transparent,
                 body: ListView(
                   physics: BouncingScrollPhysics(),
                   children: <Widget>[
-                    Padding(
-                    padding: EdgeInsets.only(
-                      top: 25.0,
-                    ),
-                    child: Center(
-                      child: Text(
-                        'Reset Password',
+                     Padding(
+                      padding: EdgeInsets.only(top: 20.0, left: 20.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                         Text(
+                         'Reset Password',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 30.0,
                           fontWeight: FontWeight.w600,
                         ),
                       ),
+                        
+                        ],
+                      ),
                     ),
-                  ),
                    
                     SizedBox(height: 90.0),
                     Padding(
@@ -303,7 +309,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                     ), // OTP Box End
                     SizedBox(height: 40.0),
                     Padding(
-                      padding: EdgeInsets.only(left: 50.0, right: 50),
+                      padding: EdgeInsets.only(left: 50.0, right: 50, bottom:10),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         // crossAxisAlignment: CrossAxisAlignment.center,

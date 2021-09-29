@@ -13,6 +13,7 @@ import 'package:tritek_lms/blocs/settings.bloc.dart';
 import 'package:tritek_lms/data/entity/users.dart';
 import 'package:tritek_lms/pages/login_signup/termsAndcond.dart';
 import 'package:tritek_lms/pages/notifications.dart';
+import 'package:tritek_lms/pages/payment/select_plan.dart';
 import 'package:tritek_lms/pages/search.dart';
 
 class AppSettings extends StatefulWidget {
@@ -176,7 +177,7 @@ class _AppSettingsState extends State<AppSettings> {
                       //opacity: top == 80.0 ? 1.0 : 0.0,
                       opacity: 1.0,
                       child: Text(
-                        'SETTINGS',
+                        'Settings',
                         style: TextStyle(
                           fontFamily: 'Signika Negative',
                           fontWeight: FontWeight.w700,
@@ -199,8 +200,8 @@ class _AppSettingsState extends State<AppSettings> {
           children: <Widget>[
             SizedBox(height: 5.0),
             Container(
-               padding: const EdgeInsets.symmetric(horizontal: 20.0),
-               alignment: Alignment.centerLeft,
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              alignment: Alignment.centerLeft,
               child: Text(
                 "Subscription",
                 style: TextStyle(
@@ -211,64 +212,67 @@ class _AppSettingsState extends State<AppSettings> {
                 ),
               ),
             ),
-             Container(
-               padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical:5),
-               alignment: Alignment.centerLeft,
-               child: Text(
-                        _user.subscription != null
-                            ? 'Your Current Membership Plan is'
-                            : '',
-                        style: TextStyle(
-                          fontSize: 12.0,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
-                        ),
-                      ),
-             ),
-                    Spacer(),
-                    Container(
-               padding: const EdgeInsets.symmetric(horizontal: 20.0),
-               alignment: Alignment.centerLeft,
-                      child: AutoSizeText(
-                        _user.subscription != null
-                            ? _user.subscription
-                            : 'You Have No Active Subscription',
-                        maxLines: 1,
-                        style: TextStyle(
-                          fontSize: 25.0,
-                          fontWeight: FontWeight.bold,
-                          color: themeGold,
-                        ),
-                      ),
-                    ),
-
-                   Container(
-               padding: const EdgeInsets.symmetric(horizontal: 20.0,vertical:5),
-               alignment: Alignment.centerLeft,
-                      child: AutoSizeText(
-                        _user.subscription != null
-                            ? 'Valid Until ' + getDate(_user)
-                            : '',
-                        maxLines: 1,
-                        style: TextStyle(
-                          fontSize: 12.0,
-                          fontWeight: FontWeight.bold,
-                          color: themeBlue,
-                        ),
-                      ),
-                    ),
+            Container(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 20.0, vertical: 5),
+              alignment: Alignment.centerLeft,
+              child: Text(
+                _user.subscription != null
+                    ? 'Your Current Membership Plan is'
+                    : '',
+                style: TextStyle(
+                  fontSize: 12.0,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                ),
+              ),
+            ),
+            Spacer(),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              alignment: Alignment.centerLeft,
+              child: AutoSizeText(
+                _user.subscription != null
+                    ? _user.subscription
+                    : 'You Have No Active Subscription',
+                maxLines: 1,
+                style: TextStyle(
+                  fontSize: 25.0,
+                  fontWeight: FontWeight.bold,
+                  color: themeGold,
+                ),
+              ),
+            ),
+            Container(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 20.0, vertical: 5),
+              alignment: Alignment.centerLeft,
+              child: AutoSizeText(
+                _user.subscription != null
+                    ? 'Valid Until ' + getDate(_user)
+                    : '',
+                maxLines: 1,
+                style: TextStyle(
+                  fontSize: 12.0,
+                  fontWeight: FontWeight.bold,
+                  color: themeBlue,
+                ),
+              ),
+            ),
             Padding(
-              padding: const EdgeInsets.only(left: 20.0, right:230),
+              padding: const EdgeInsets.only(left: 20.0, right: 230),
               child: Container(
-                 
-                 alignment: Alignment.centerLeft,
+                alignment: Alignment.centerLeft,
                 color: themeBlue,
                 height: 50,
                 width: 170,
                 child: RaisedButton(
                   elevation: 5.0,
                   color: themeBlue,
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => SelectPlan()));
+                  },
                   child: Center(
                       child: Text("Change Subscription",
                           style: TextStyle(

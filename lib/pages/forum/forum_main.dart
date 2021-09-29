@@ -39,13 +39,29 @@ class _ForumHomeState extends State<ForumHome> {
           elevation: 0.0,
           backgroundColor: Colors.transparent,
           automaticallyImplyLeading: false,
-          title: Text(
-            'Forum',
-            style: TextStyle(
-              color: themeGold,
-              fontSize: 30.0,
-              fontWeight: FontWeight.w700,
-            ),
+          title: Row(
+            children: [
+              Container(
+                height: 26.0,
+                width: 26.0,
+                margin: EdgeInsets.all(10.0),
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage("assets/logo.png"),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+              SizedBox(height: 5),
+              Text(
+                'Forum',
+                style: TextStyle(
+                  color: themeGold,
+                  fontSize: 30.0,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+            ],
           ),
           actions: <Widget>[
             IconButton(

@@ -63,10 +63,20 @@ class _NotePageState extends State<NotePage> {
       child: Scaffold(
         key: _globalKey,
         appBar: AppBar(
-          brightness: Brightness.light,
-          leading: BackButton(
-            color: themeGold,
+          automaticallyImplyLeading: false,
+          leading: GestureDetector(
+            onTap: () {
+              Navigator.pop(context);
+            },
+            child: Container(
+                height: 30,
+                width: 30,
+                child: Center(
+                  child: Icon(Icons.arrow_back_ios, color: Colors.white),
+                )), // this should route to the previous screen
           ),
+          brightness: Brightness.light,
+         
           actions: _archiveAction(context),
           elevation: 1,
           backgroundColor: themeBlue,

@@ -99,14 +99,14 @@ class _CourseReviewState extends State<CourseReview> {
                                     ),
                                   ))),
                       Divider(),
-                      Text(
-                        "Reviews",
-                        style: TextStyle(
-                          color: themeGold,
-                          fontSize: 14.0,
-                          fontFamily: 'Signika Negative',
-                        ),
-                      ),
+                      // Text(
+                      //   "Reviews",
+                      //   style: TextStyle(
+                      //     color: themeGold,
+                      //     fontSize: 14.0,
+                      //     fontFamily: 'Signika Negative',
+                      //   ),
+                      // ),
                       for (var item in comments)
                         Container(
                             padding: EdgeInsets.all(20),

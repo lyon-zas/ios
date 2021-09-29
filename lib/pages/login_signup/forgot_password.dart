@@ -53,31 +53,35 @@ class _ForgotPasswordState extends State<ForgotPassword> {
               ),
             ),
           ),
-          Container(
-              margin: EdgeInsets.only(top: 60, left: 20),
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.pop(context);
-                },
-                child: Container(
-                    height: 30,
-                    width: 30,
-                    child: Center(
-                      child: Icon(Icons.arrow_back_ios, color: Colors.white),
-                    )), // this should route to the previous screen
-              )),
+          
           Positioned(
             child: Scaffold(
+              appBar: AppBar(
+                elevation: 0.0,
+                backgroundColor: Colors.transparent,
+                leadingWidth: 60,
+                leading: GestureDetector(
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  child: Container(
+                      height: 30,
+                      width: 30,
+                      child: Center(
+                        child: Icon(Icons.arrow_back_ios, color: Colors.white),
+                      )), // this should route to the previous screen
+                ),
+              ),
               backgroundColor: Colors.transparent,
               body: ListView(
                 physics: BouncingScrollPhysics(),
                 children: <Widget>[
-                  Padding(
-                    padding: EdgeInsets.only(
-                      top: 25.0,
-                    ),
-                    child: Center(
-                      child: Text(
+                   Padding(
+                      padding: EdgeInsets.only(top: 20.0, left: 20.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                         Text(
                         'Forgotten Password',
                         style: TextStyle(
                           color: Colors.white,
@@ -85,22 +89,44 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                           fontWeight: FontWeight.w600,
                         ),
                       ),
+                        
+                        ],
+                      ),
                     ),
-                  ),
+                  
 
-                  SizedBox(height: 70.0),
+                  SizedBox(height: 60.0),
                   Padding(
                     padding: EdgeInsets.only(left: 25.0, right: 25, bottom: 30),
                     child: Center(
-                      child: Text(
-                        '''   Please enter your email address below and  
-                 we'll send you an email with instructions on how
-              to reset your password.''',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16.0,
-                          fontWeight: FontWeight.w400,
-                        ),
+                      child: Column(
+                        crossAxisAlignment:CrossAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Please enter your email address below and ',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 15.0,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                          Text(
+                            '''we'll send you an email with instructions on how ''',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 15.0,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                          Text(
+                            'to reset your password.',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 15.0,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),

@@ -46,19 +46,19 @@ class _OverviewCoursePageState extends State<OverviewCoursePage> with TickerProv
                       //   // Display the image in large form.
                       // },
                     ))),
-            widget.isExpanded
-                ? new FlatButton(
-                    child: const Text(
-                      'show less',
-                      style: TextStyle(color: Colors.blue),
-                    ),
-                    onPressed: () => setState(() => widget.isExpanded = false))
-                : new FlatButton(
-                    child: const Text(
-                      'show more',
-                      style: TextStyle(color: Colors.blue),
-                    ),
-                    onPressed: () => setState(() => widget.isExpanded = true)),
+            // widget.isExpanded
+            //     ? new FlatButton(
+            //         child: const Text(
+            //           'show less',
+            //           style: TextStyle(color: Colors.blue),
+            //         ),
+            //         onPressed: () => setState(() => widget.isExpanded = false))
+            //     : new FlatButton(
+            //         child: const Text(
+            //           'show more',
+            //           style: TextStyle(color: Colors.blue),
+            //         ),
+            //         onPressed: () => setState(() => widget.isExpanded = true)),
             SizedBox(height: 30),
             // CommentSlider(course.comments, widget.users, widget.course),
           ],

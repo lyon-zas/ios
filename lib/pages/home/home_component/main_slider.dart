@@ -49,13 +49,14 @@ class _MainSliderState extends State<MainSlider> {
       options: CarouselOptions(
         height: (height / 4.0),
         enlargeCenterPage: true,
+        enlargeStrategy:CenterPageEnlargeStrategy.height,
         autoPlay: true,
         aspectRatio: 16 / 9,
         autoPlayInterval: const Duration(seconds: 6),
         autoPlayCurve: Curves.fastOutSlowIn,
         enableInfiniteScroll: true,
         autoPlayAnimationDuration: const Duration(milliseconds: 800),
-        viewportFraction: 1.0,
+        // viewportFraction: 1.0,
       ),
       items: data.map((i) {
         return Builder(

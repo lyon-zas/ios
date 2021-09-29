@@ -9,6 +9,8 @@ import 'package:tritek_lms/blocs/user.bloc.dart';
 import 'package:tritek_lms/data/entity/courses.dart';
 import 'package:tritek_lms/data/entity/users.dart';
 import 'package:tritek_lms/pages/login_signup/login.dart';
+import 'package:tritek_lms/pages/notifications.dart';
+import 'package:tritek_lms/pages/search.dart';
 import 'package:tritek_lms/pages/welcome.dart';
 
 class Progress extends StatefulWidget {
@@ -169,7 +171,56 @@ class _ProgressState extends State<Progress> {
     double width = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      backgroundColor: themeBg,
+      appBar: AppBar(
+        elevation: 0.0,
+        automaticallyImplyLeading: false,
+        backgroundColor: themeBlue,
+        title: Row(
+          children: [
+            Container(
+                      height: 26.0,
+                      width: 26.0,
+                      margin: EdgeInsets.all(10.0),
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage("assets/logo.png",),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                    SizedBox(height:5),
+            Text(
+              "Dashboard",
+              style: TextStyle(
+                fontFamily: 'Signika Negative',
+                fontWeight: FontWeight.w700,
+                fontSize: 25.0,
+                color: themeGold,
+              ),
+            ),
+          ],
+        ),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.search),
+            iconSize: 30,
+            color: themeGold,
+            onPressed: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => Search()));
+            },
+          ),
+          IconButton(
+            icon: Icon(Icons.notifications),
+            iconSize: 30,
+            color: themeGold,
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => Notifications()));
+            },
+          ),
+        ],
+      ),
       body: ListView(
         children: [
           Container(
@@ -180,56 +231,111 @@ class _ProgressState extends State<Progress> {
                 Container(
                   width: double.infinity,
                   height: 250.0,
-                  color: themeBlue,
+                  // color: themeBlue,
                 ),
                 Container(
                   width: double.infinity,
                   margin: EdgeInsets.only(top: 40.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.center,
+                  child: Row(
+                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Center(
-                        child: GestureDetector(
-                          onTap: () {},
-                          child: CircleAvatar(
-                            radius: 55,
-                            backgroundColor: themeGold,
-                            child: _image != null
-                                ? ClipRRect(
-                                    borderRadius: BorderRadius.circular(50),
-                                    child: Image.file(
-                                      _image,
-                                      width: 100,
-                                      height: 100,
-                                      fit: BoxFit.fitHeight,
-                                    ),
-                                  )
-                                : Container(
-                                    decoration: BoxDecoration(
-                                        color: Colors.grey[200],
-                                        borderRadius:
-                                            BorderRadius.circular(50)),
-                                    width: 100,
-                                    height: 100,
-                                    child: Icon(
-                                      Icons.camera_alt,
-                                      color: Colors.grey[800],
-                                    ),
-                                  ),
+                      // Column(
+                      //   mainAxisAlignment: MainAxisAlignment.start,
+                      //   crossAxisAlignment: CrossAxisAlignment.center,
+                      //   children: [
+                      //     Center(
+                      //       child: GestureDetector(
+                      //         onTap: () {},
+                      //         child: CircleAvatar(
+                      //           radius: 30,
+                      //           backgroundColor: themeGold,
+                      //           child: Text(
+                      //             _level != null
+                      //                 ? _level.points + ' Points'
+                      //                 : '.. Points',
+                      //             style: TextStyle(
+                      //               fontSize: 17.0,
+                      //               color: Color(0xFF838DAF),
+                      //             ),
+                      //           ),
+                      //         ),
+                      //       ),
+                      //     ),
+                      //   ],
+                      // ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Center(
+                            child: GestureDetector(
+                              onTap: () {},
+                              child: CircleAvatar(
+                                radius: 55,
+                                // backgroundColor: themeGold,
+                                child: _image != null
+                                    ? ClipRRect(
+                                        borderRadius: BorderRadius.circular(50),
+                                        child: Image.file(
+                                          _image,
+                                          width: 100,
+                                          height: 100,
+                                          fit: BoxFit.fitHeight,
+                                        ),
+                                      )
+                                    : Container(
+                                        decoration: BoxDecoration(
+                                            color: Colors.grey[200],
+                                            borderRadius:
+                                                BorderRadius.circular(50)),
+                                        width: 100,
+                                        height: 100,
+                                        child: Icon(
+                                          Icons.camera_alt,
+                                          color: Colors.grey[800],
+                                        ),
+                                      ),
+                              ),
+                            ),
                           ),
-                        ),
+                          SizedBox(height: 10.0),
+                          Text(
+                            ("${_user?.firstName} ${_user?.lastName}")
+                                .toUpperCase(),
+                            style: TextStyle(
+                              color: themeGold,
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
                       ),
-                      SizedBox(height: 10.0),
-                      Text(
-                        ("${_user?.firstName} ${_user?.lastName}")
-                            .toUpperCase(),
-                        style: TextStyle(
-                          color: themeGold,
-                          fontSize: 18.0,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
+                      // Column(
+                      //    mainAxisAlignment: MainAxisAlignment.start,
+                      //   crossAxisAlignment: CrossAxisAlignment.center,
+                      //   children: [
+                      //     Center(
+                      //       child: GestureDetector(
+                      //         onTap: () {},
+                      //         child: CircleAvatar(
+                      //           radius: 30,
+                      //           backgroundColor: themeGold,
+                      //           child: Center(
+                      //             child: Text(
+                      //               _level != null
+                      //                   ? _level.points + ' Points'
+                      //                   : '.. Points',
+                      //               style: TextStyle(
+                      //                 fontSize: 17.0,
+                      //                 color: Color(0xFF838DAF),
+                      //               ),
+                      //             ),
+                      //           ),
+                      //         ),
+                      //       ),
+                      //     ),
+                      //   ],
+                      // ),
                     ],
                   ),
                 ),
