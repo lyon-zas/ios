@@ -383,7 +383,7 @@ class _CoursesNewState extends State<CoursesNew> {
                         ),
                         Tab(
                           child: Text(
-                            'Review',
+                            'Reviews',
                             style: TextStyle(
                                 fontFamily: 'Signika Negative',
                                 fontSize: 16.0,

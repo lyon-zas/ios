@@ -268,35 +268,35 @@ class _MoreState extends State<More> {
                         ),
                         SizedBox(height: 10.0),
                         Divider(),
-                        SizedBox(height: 10.0),
-                        InkWell(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => SavedVideos()));
-                          },
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: <Widget>[
-                              Icon(
-                                Icons.bookmark,
-                                size: 20.0,
-                              ),
-                              SizedBox(width: 15.0),
-                              Text(
-                                'Saved Videos',
-                                style: TextStyle(
-                                    fontSize: 19.0,
-                                    color: themeBlue,
-                                    fontWeight: FontWeight.w700,
-                                    fontFamily: 'Signika Negative'),
-                              ),
-                            ],
-                          ),
-                        ),
-                        SizedBox(height: 10.0),
-                        Divider(),
+                        // SizedBox(height: 10.0),
+                        // InkWell(
+                        //   onTap: () {
+                        //     Navigator.push(
+                        //         context,
+                        //         MaterialPageRoute(
+                        //             builder: (context) => SavedVideos()));
+                        //   },
+                        //   child: Row(
+                        //     crossAxisAlignment: CrossAxisAlignment.center,
+                        //     children: <Widget>[
+                        //       Icon(
+                        //         Icons.bookmark,
+                        //         size: 20.0,
+                        //       ),
+                        //       SizedBox(width: 15.0),
+                        //       Text(
+                        //         'Saved Videos',
+                        //         style: TextStyle(
+                        //             fontSize: 19.0,
+                        //             color: themeBlue,
+                        //             fontWeight: FontWeight.w700,
+                        //             fontFamily: 'Signika Negative'),
+                        //       ),
+                        //     ],
+                        //   ),
+                        // ),
+                        // SizedBox(height: 10.0),
+                        // Divider(),
                         SizedBox(height: 10.0),
                         InkWell(
                           onTap: () {

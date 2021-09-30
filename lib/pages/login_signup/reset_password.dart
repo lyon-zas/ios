@@ -39,7 +39,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
   String _password;
 
   Timer _timer;
-  int _start = 100;
+  int _start = 180;
 
   void startTimer() {
     _timer = new Timer.periodic(
@@ -65,7 +65,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
   @override
   void initState() {
     super.initState();
-    _start = 100;
+    _start = 180;
     startTimer();
   }
 
@@ -383,6 +383,49 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                               ),
                             ),
                             onSaved: (password) => _password = password,
+                          ),
+                        ),
+                      ),
+                       if (_otpCorrect) SizedBox(height: 20.0),
+                    if (_otpCorrect)
+                      Padding(
+                        padding: EdgeInsets.only(right: 20.0, left: 20.0),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.grey[200].withOpacity(0.3),
+                            
+                          ),
+                          child: TextFormField(
+                            focusNode: _passwordFocusNode,
+                            controller: passwordController,
+                            textCapitalization: TextCapitalization.none,
+                            keyboardType: TextInputType.text,
+                            textInputAction: TextInputAction.next,
+                            validator: (value) {
+                              return Validator.password(value);
+                            },
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 14.0,
+                              fontWeight: FontWeight.w500,
+                            ),
+                            obscureText: _obscureText,
+                            decoration: InputDecoration(
+                              contentPadding: EdgeInsets.only(
+                                  left: 20.0, top: 13.0, bottom: 12.0),
+                              hintText: 'Confirm Password',
+                              hintStyle: TextStyle(
+                                color: Colors.white,
+                                // fontSize: 16.0,
+                                fontWeight: FontWeight.w500,
+                              ),
+                              border: InputBorder.none,
+                              suffixIcon: IconButton(
+                                icon: Icon(Icons.remove_red_eye),
+                                onPressed: _viewPassword,
+                              ),
+                            ),
+                            
                           ),
                         ),
                       ),

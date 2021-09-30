@@ -14,6 +14,7 @@ import 'package:tritek_lms/pages/common/dialog.dart';
 import 'package:tritek_lms/pages/home/home.dart';
 import 'package:tritek_lms/pages/login_signup/captureSignUp.dart';
 import 'package:tritek_lms/pages/login_signup/termsAndcond.dart';
+import 'package:tritek_lms/pages/settings/help.dart';
 
 class OTPScreen extends StatefulWidget {
   final data;
@@ -38,7 +39,7 @@ class _OTPScreenState extends State<OTPScreen> {
   final UserRepository _repository = UserRepository();
 
   Timer _timer;
-  int _start = 60;
+  int _start = 180;
 
   void startTimer() {
     _timer = new Timer.periodic(
@@ -70,7 +71,7 @@ class _OTPScreenState extends State<OTPScreen> {
   @override
   void initState() {
     super.initState();
-    _start = 60;
+    _start = 180;
     startTimer();
     _startUp();
   }
@@ -146,9 +147,22 @@ class _OTPScreenState extends State<OTPScreen> {
                 ),
               ),
             ),
-            Container(
-                margin: EdgeInsets.only(top: 60, left: 20),
-                child: GestureDetector(
+            // Container(
+            //     margin: EdgeInsets.only(top: 60, left: 20),
+            //     child: GestureDetector(
+            //       onTap: () {
+            //         Navigator.pop(context);
+            //       },
+            //       child: Container(
+            //           height: 30,
+            //           width: 30,
+            //           child: Center(
+            //             child: Icon(Icons.arrow_back_ios, color: Colors.white),
+            //           )), // this should route to the previous screen
+            //     )),
+            Positioned(
+              child: Scaffold(
+                appBar: AppBar(leading: GestureDetector(
                   onTap: () {
                     Navigator.pop(context);
                   },
@@ -158,9 +172,7 @@ class _OTPScreenState extends State<OTPScreen> {
                       child: Center(
                         child: Icon(Icons.arrow_back_ios, color: Colors.white),
                       )), // this should route to the previous screen
-                )),
-            Positioned(
-              child: Scaffold(
+                ),),
                 backgroundColor: Colors.transparent,
                 body: ListView(
                   physics: BouncingScrollPhysics(),
@@ -168,11 +180,11 @@ class _OTPScreenState extends State<OTPScreen> {
                    
                     Padding(
                       padding: EdgeInsets.only(
-                          top: 25, ),
+                          top: 35,left:0 ),
                       child: Center(
                         child: Text(
                           mode == 1
-                              ? 'One Time Password'
+                              ? 'Enter Code'
                               : 'Password Reset Request',
                           style: TextStyle(
                               color: Colors.white,
@@ -187,13 +199,33 @@ class _OTPScreenState extends State<OTPScreen> {
                       padding:
                           EdgeInsets.only(left: 25.0, right: 25, bottom: 20),
                       child: Center(
-                        child: Text(
-                          'Please enter the One Time Password (OTP) in the email \n sent to  \n to complete your registration',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 12.0,
-                            fontWeight: FontWeight.w400,
-                          ),
+                        child: Column(
+                          children: [
+                            Text(
+                              'Please enter the One Time Password (OTP) in the email \n sent to  \n to complete your registration',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 12.0,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                            Text(
+                              ' sent to ',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 12.0,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                            Text(
+                              'to complete your registration',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 12.0,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
@@ -414,31 +446,41 @@ class _OTPScreenState extends State<OTPScreen> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 400),
+                    SizedBox(height: 200),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal:30),
                       child: Row( mainAxisAlignment:MainAxisAlignment.center,
                         children: [
-                        Text(
-                          'Need help? ',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16.0,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                        InkWell(
-                          onTap: () {},
+                         InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                    context,
+                                    PageTransition(
+                                        type: PageTransitionType.rightToLeft,
+                                        child: Help()));
+                              },
                           child: Text(
-                            'Contact Tritek Support',
+                            'Need help? ',
                             style: TextStyle(
-                              decoration: TextDecoration.underline,
                               color: Colors.blue[200],
+                              decoration: TextDecoration.underline,
                               fontSize: 16.0,
                               fontWeight: FontWeight.w500,
                             ),
                           ),
-                        )
+                        ),
+                        // InkWell(
+                        //   onTap: () {},
+                        //   child: Text(
+                        //     'Contact Tritek Support',
+                        //     style: TextStyle(
+                        //       decoration: TextDecoration.underline,
+                        //       color: Colors.blue[200],
+                        //       fontSize: 16.0,
+                        //       fontWeight: FontWeight.w500,
+                        //     ),
+                        //   ),
+                        // )
                       ]),
                     ),
                   ],

@@ -17,10 +17,10 @@ class _PersonalityTestState extends State<PersonalityTest> {
     return Container(
       
       child: Scaffold(
-          backgroundColor: Colors.transparent,
+          backgroundColor: Colors.white,
           appBar: AppBar(
             elevation: 0.0,
-            backgroundColor: Colors.white,
+            backgroundColor: themeBlue,
             centerTitle: true,
             title:  Text(
                           'Personality Test',
@@ -44,28 +44,7 @@ class _PersonalityTestState extends State<PersonalityTest> {
                     ),
                   )), // this should route to the previous screen
             ),
-            actions: <Widget>[
-              IconButton(
-                icon: Icon(Icons.search),
-                iconSize: 30,
-                color: themeGold,
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => Search()));
-                },
-              ),
-              IconButton(
-                icon: Icon(Icons.notifications),
-                iconSize: 30,
-                color: themeGold,
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => Notifications()));
-                },
-              ),
-            ],
+           
           ),
           body: ListView(
             physics: BouncingScrollPhysics(),

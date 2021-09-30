@@ -23,13 +23,14 @@ The navigation delegate is set to block navigation to the youtube website.
 </body>
 </html>
 ''';
+
 class UpcomingMeeting extends StatefulWidget {
   @override
   _UpcomingMeetingState createState() => _UpcomingMeetingState();
 }
 
 class _UpcomingMeetingState extends State<UpcomingMeeting> {
-   bool isLoading = true;
+  bool isLoading = true;
   final Completer<WebViewController> _controller =
       Completer<WebViewController>();
   @override
@@ -37,7 +38,9 @@ class _UpcomingMeetingState extends State<UpcomingMeeting> {
     super.initState();
     // Enable hybrid composition.
     // if (Platform.isAndroid) WebView.platform = SurfaceAndroidWebView();
-
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await dialog();
+    });
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.landscapeLeft,
       DeviceOrientation.landscapeRight,
@@ -68,7 +71,7 @@ class _UpcomingMeetingState extends State<UpcomingMeeting> {
     super.dispose();
   }
 
-      final GlobalKey webViewKey = GlobalKey();
+  final GlobalKey webViewKey = GlobalKey();
 
   InAppWebViewController webViewController;
   InAppWebViewGroupOptions options = InAppWebViewGroupOptions(
@@ -88,21 +91,15 @@ class _UpcomingMeetingState extends State<UpcomingMeeting> {
   double progress = 0;
   final urlController = TextEditingController();
 
-
-  
-
-  
-
-  
-    @override
-    Widget build(BuildContext context) {
-      return Scaffold(
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
         appBar: AppBar(
           elevation: 0.0,
           backgroundColor: themeBlue,
           centerTitle: true,
           title: Text(
-            'Upcoming Meetings',
+            'Live Meetings',
             style: TextStyle(
               color: themeGold,
               fontSize: 20.0,
@@ -123,123 +120,129 @@ class _UpcomingMeetingState extends State<UpcomingMeeting> {
                   ),
                 )), // this should route to the previous screen
           ),
-          actions: <Widget>[
-            IconButton(
-              icon: Icon(Icons.search),
-              iconSize: 30,
-              color: themeGold,
-              onPressed: () {
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => Search()));
-              },
-            ),
-            IconButton(
-              icon: Icon(Icons.notifications),
-              iconSize: 30,
-              color: themeGold,
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => Notifications()));
-              },
-            ),
-          ],
         ),
         body: SafeArea(
-              child: Column(children: <Widget>[
-            Expanded(
-              child: Stack(
+            child: Column(children: <Widget>[
+          Expanded(
+            child: Stack(
+              children: [
+                InAppWebView(
+                  key: webViewKey,
+                  initialUrlRequest: URLRequest(
+                      url: Uri.parse(
+                          'https://mytritek.co.uk/video-conferencing/')),
+                  initialOptions: options,
+                  pullToRefreshController: pullToRefreshController,
+                  onWebViewCreated: (controller) {
+                    webViewController = controller;
+                  },
+                  onLoadStart: (controller, url) {
+                    setState(() {
+                      this.url = url.toString();
+                      urlController.text = this.url;
+                    });
+                  },
+                  androidOnPermissionRequest:
+                      (controller, origin, resources) async {
+                    return PermissionRequestResponse(
+                        resources: resources,
+                        action: PermissionRequestResponseAction.GRANT);
+                  },
+                  shouldOverrideUrlLoading:
+                      (controller, navigationAction) async {
+                    var uri = navigationAction.request.url;
+
+                    if (![
+                      "http",
+                      "https",
+                      "file",
+                      "chrome",
+                      "data",
+                      "javascript",
+                      "about"
+                    ].contains(uri.scheme)) {
+                      if (await canLaunch(url)) {
+                        // Launch the App
+                        await launch(
+                          url,
+                        );
+                        // and cancel the request
+                        return NavigationActionPolicy.CANCEL;
+                      }
+                    }
+
+                    return NavigationActionPolicy.ALLOW;
+                  },
+                  onLoadStop: (controller, url) async {
+                    pullToRefreshController.endRefreshing();
+                    setState(() {
+                      this.url = url.toString();
+                      urlController.text = this.url;
+                    });
+                  },
+                  onLoadError: (controller, url, code, message) {
+                    pullToRefreshController.endRefreshing();
+                  },
+                  onProgressChanged: (controller, progress) {
+                    if (progress == 100) {
+                      pullToRefreshController.endRefreshing();
+                    }
+                    setState(() {
+                      this.progress = progress / 100;
+                      urlController.text = this.url;
+                    });
+                  },
+                  onUpdateVisitedHistory: (controller, url, androidIsReload) {
+                    setState(() {
+                      this.url = url.toString();
+                      urlController.text = this.url;
+                    });
+                  },
+                  onConsoleMessage: (controller, consoleMessage) {
+                    print(consoleMessage);
+                  },
+                ),
+                progress < 1.0
+                    ? Center(
+                        child: CircularProgressIndicator(),
+                      )
+                    : Stack(),
+              ],
+            ),
+          ),
+          ButtonBar(
+            alignment: MainAxisAlignment.center,
+            children: <Widget>[],
+          ),
+        ])));
+  }
+  void dialog() {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+              content: Container(
+            height: MediaQuery.of(context).size.height / 5,
+            padding: EdgeInsets.all(8.0),
+            child: Center(
+              child: Column(
+                mainAxisAlignment:MainAxisAlignment.center,
                 children: [
-                  InAppWebView(
-                    key: webViewKey,
-                    initialUrlRequest: URLRequest(
-                        url: Uri.parse('https://mytritek.co.uk/video-conferencing/')),
-                    initialOptions: options,
-                    pullToRefreshController: pullToRefreshController,
-                    onWebViewCreated: (controller) {
-                      webViewController = controller;
-                    },
-                    onLoadStart: (controller, url) {
-                      setState(() {
-                        this.url = url.toString();
-                        urlController.text = this.url;
-                      });
-                    },
-                    androidOnPermissionRequest:
-                        (controller, origin, resources) async {
-                      return PermissionRequestResponse(
-                          resources: resources,
-                          action: PermissionRequestResponseAction.GRANT);
-                    },
-                    shouldOverrideUrlLoading:
-                        (controller, navigationAction) async {
-                      var uri = navigationAction.request.url;
-
-                      if (![
-                        "http",
-                        "https",
-                        "file",
-                        "chrome",
-                        "data",
-                        "javascript",
-                        "about"
-                      ].contains(uri.scheme)) {
-                        if (await canLaunch(url)) {
-                          // Launch the App
-                          await launch(
-                            url,
-                          );
-                          // and cancel the request
-                          return NavigationActionPolicy.CANCEL;
-                        }
-                      }
-
-                      return NavigationActionPolicy.ALLOW;
-                    },
-                    onLoadStop: (controller, url) async {
-                      pullToRefreshController.endRefreshing();
-                      setState(() {
-                        this.url = url.toString();
-                        urlController.text = this.url;
-                      });
-                    },
-                    onLoadError: (controller, url, code, message) {
-                      pullToRefreshController.endRefreshing();
-                    },
-                    onProgressChanged: (controller, progress) {
-                      if (progress == 100) {
-                        pullToRefreshController.endRefreshing();
-                      }
-                      setState(() {
-                        this.progress = progress / 100;
-                        urlController.text = this.url;
-                      });
-                    },
-                    onUpdateVisitedHistory: (controller, url, androidIsReload) {
-                      setState(() {
-                        this.url = url.toString();
-                        urlController.text = this.url;
-                      });
-                    },
-                    onConsoleMessage: (controller, consoleMessage) {
-                      print(consoleMessage);
-                    },
-                  ),
-                  progress < 1.0
-                      ? Center(
-                          child: CircularProgressIndicator(),
-                        )
-                      : Stack(),
+                  Text('Sign In to take personality test'),
+                  GestureDetector(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child:
+                          Text('OK', style: TextStyle(color: themeGold)))
                 ],
               ),
             ),
-            ButtonBar(
-              alignment: MainAxisAlignment.center,
-              children: <Widget>[],
-            ),
-          ]))
-      );
-    } 
-    JavascriptChannel _toasterJavascriptChannel(BuildContext context) {
+          ));
+        });
+  }
+  
+  JavascriptChannel _toasterJavascriptChannel(BuildContext context) {
     return JavascriptChannel(
         name: 'Toaster',
         onMessageReceived: (JavascriptMessage message) {
@@ -249,6 +252,4 @@ class _UpcomingMeetingState extends State<UpcomingMeeting> {
           );
         });
   }
-
-  }
-
+}

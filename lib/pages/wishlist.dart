@@ -167,6 +167,7 @@ class _WishlistState extends State<Wishlist> {
                             style: TextStyle(
                               color: themeBlue,
                               fontSize: 20.0,
+                              
                               fontFamily: 'Signika Negative',
                               fontWeight: FontWeight.w700,
                               letterSpacing: 0.7,

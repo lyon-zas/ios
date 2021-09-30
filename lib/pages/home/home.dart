@@ -88,24 +88,24 @@ class _HomeState extends State<Home> {
                 color: themeGold,
               ),
               title: Text(
-                'Favourite',
+                'Favourites',
                 style: TextStyle(fontSize: 10.0),
               )),
-          BottomNavigationBarItem(
-            backgroundColor: themeBlue,
-            icon: Icon(
-              Icons.forum_rounded,
-              color: Colors.white,
-            ),
-            activeIcon: Icon(
-              Icons.forum_rounded,
-              color: themeGold,
-            ),
-            title: Text(
-              'Forum',
-              style: TextStyle(fontSize: 10.0),
-            ),
-          ),
+          // BottomNavigationBarItem(
+          //   backgroundColor: themeBlue,
+          //   icon: Icon(
+          //     Icons.forum_rounded,
+          //     color: Colors.white,
+          //   ),
+          //   activeIcon: Icon(
+          //     Icons.forum_rounded,
+          //     color: themeGold,
+          //   ),
+          //   title: Text(
+          //     'Forum',
+          //     style: TextStyle(fontSize: 10.0),
+          //   ),
+          // ),
           BottomNavigationBarItem(
               backgroundColor: themeBlue,
 
@@ -124,17 +124,20 @@ class _HomeState extends State<Home> {
               ))
         ],
       ),
-      body: WillPopScope(
-        child: (currentIndex == 0)
+      body: IndexedStack(
+        children: <Widget>[
+          (currentIndex == 0)
             ? HomeMain()
             : (currentIndex == 1)
                 ? Progress()
                 : (currentIndex == 2)
                     ? Wishlist()
-                    : (currentIndex == 3)
-                        ? ForumHome()
-                        : More(),
-        onWillPop: onWillPop,
+                    : More(),
+                    // : (currentIndex == 3)
+                    //     ? ForumHome()
+                    //     : More(),
+        // onWillPop: onWillPop,
+        ]
       ),
     );
   }

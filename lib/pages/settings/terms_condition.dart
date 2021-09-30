@@ -69,7 +69,7 @@ class _TermsState extends State<Terms> {
             'Terms & Conditions',
             style: TextStyle(
               color: themeGold,
-              fontSize: 25.0,
+              fontSize: 20.0,
               fontWeight: FontWeight.w700,
             ),
           ),
@@ -87,26 +87,7 @@ class _TermsState extends State<Terms> {
                   ),
                 )), // this should route to the previous screen
           ),
-          actions: <Widget>[
-            IconButton(
-              icon: Icon(Icons.search),
-              iconSize: 30,
-              color: themeGold,
-              onPressed: () {
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => Search()));
-              },
-            ),
-            IconButton(
-              icon: Icon(Icons.notifications),
-              iconSize: 30,
-              color: themeGold,
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => Notifications()));
-              },
-            ),
-          ],
+          
         ),
           body: SafeArea(
               child: Column(children: <Widget>[

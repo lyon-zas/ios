@@ -373,7 +373,7 @@ class _LoginState extends State<Login> {
                           },
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: 16.0,
+                            fontSize: 18.0,
                             fontWeight: FontWeight.w500,
                           ),
                           obscureText: _obscureText,
@@ -931,7 +931,7 @@ class _LoginState extends State<Login> {
   Future<void> login(BuildContext context) async {
     try {
       LoadingDialogs.showLoadingDialog(
-          context, _keyLoader, 'Login you in...'); //invoking login
+          context, _keyLoader, 'Signing you in...'); //invoking login
       UserResponse _response = await _repository.login(_username, _password);
       if (_response.error.length > 0) {
         Navigator.of(_keyLoader.currentContext, rootNavigator: true).pop();

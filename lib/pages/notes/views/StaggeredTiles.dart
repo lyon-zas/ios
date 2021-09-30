@@ -58,7 +58,8 @@ class _MyStaggeredTileState extends State<MyStaggeredTile> {
       contentsOfTiles.add(
         AutoSizeText(
           title,
-          style: TextStyle(fontSize: _fontSize, fontWeight: FontWeight.bold),
+          overflow: TextOverflow.ellipsis,
+          style: TextStyle(fontSize: _fontSize, fontWeight: FontWeight.bold,),
           maxLines:
           ('${widget.note.course}: ${widget.note.lesson} @ ${widget.note.time}')
               .length ==
@@ -70,7 +71,7 @@ class _MyStaggeredTileState extends State<MyStaggeredTile> {
       );
       contentsOfTiles.add(
         Divider(
-          color: Colors.transparent,
+          color: Colors.grey,
           height: 6,
         ),
       );

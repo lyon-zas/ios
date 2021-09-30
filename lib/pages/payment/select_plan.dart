@@ -554,8 +554,9 @@ class _SelectPlanState extends State<SelectPlan> {
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
             return <Widget>[
               SliverAppBar(
-                expandedHeight: 150.0,
+                expandedHeight: 50.0,
                 pinned: true,
+                centerTitle:true,
                 forceElevated: true,
                 automaticallyImplyLeading: false,
                 backgroundColor: themeBlue,
@@ -571,13 +572,13 @@ class _SelectPlanState extends State<SelectPlan> {
                 ),
                 flexibleSpace: FlexibleSpaceBar(
                   background: Container(
-                    padding: EdgeInsets.fromLTRB(20, 20, 20, 10),
-                    alignment: Alignment.bottomLeft,
+                    // padding: EdgeInsets.fromLTRB(20, 20, 20, 10),
+                    alignment: Alignment.center,
                     decoration: BoxDecoration(
                         color: themeBlue
                     ),
                     child: AutoSizeText(
-                      'Membership/Subscriptions',
+                      'Subscriptions',
                       maxLines: 1,
                       style: TextStyle(
                         fontFamily: 'Signika Negative',

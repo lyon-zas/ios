@@ -219,7 +219,7 @@ class _HomeMainState extends State<HomeMain> {
                         child: Row(
                           children: [
                             Text(
-                              "Upcoming Meeting",
+                              "Live Meetings",
                               style: TextStyle(
                                 fontFamily: 'Signika Negative',
                                 fontWeight: FontWeight.w700,
